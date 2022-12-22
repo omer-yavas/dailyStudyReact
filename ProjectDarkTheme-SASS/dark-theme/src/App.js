@@ -26,9 +26,9 @@ function App() {
       <section className="articles">
         {data.map((item) => {
           return (
-            <article className="post">
+            <article className="match">
               <h2>{item.title}</h2>
-              <div className="post-info">
+              <div className="match-info">
                 <span>{item.score}</span>
               </div>
               <p>{item.level}</p>

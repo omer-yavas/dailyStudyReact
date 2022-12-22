@@ -2,18 +2,18 @@ const worldCup = [
   {
     id: 1,
     title: 'Argentina - France',
-    level: 'final',
+    level: 'Final',
     score: `3 - 3`,
   },
   {
     id: 2,
     title: 'Croatia - Morocco',
-    level: 'Play-off for third place',
+    level: 'Play-off for Third Place',
     score: `2 - 1`,
   },
   {
     id: 3,
-    title: 'France - Moroco',
+    title: 'France - Morocco',
     level: 'Semi-final',
     score: `2 - 0`,
   },
