@@ -1,71 +1,68 @@
-:root {
-  --clr-bcg: #fff;
-  --clr-font: #282c35;
-  --clr-primary: #d23669;
-}
+.dark-theme body {
+  background: #282c35;
+  color: #fff; }
 
-.dark-theme {
-  --clr-bcg: #282c35;
-  --clr-font: #fff;
-  --clr-primary: #ffa7c4;
-}
-.light-theme {
-  --clr-bcg: #fff;
-  --clr-font: #282c35;
-  --clr-primary: #d23669;
-}
+.dark-theme .match h2 {
+  color: #ffa7c4; }
+
+.dark-theme .btn {
+  background: #ffa7c4;
+  color: #fff; }
+
+.light-theme body {
+  background: #fff;
+  color: #282c35; }
+
+.light-theme .match h2 {
+  color: #d23669; }
+
+.light-theme .btn {
+  background: #d23669;
+  color: #fff; }
+
 *,
 ::after,
 ::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background: var(--clr-bcg);
-  color: var(--clr-font);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.5;
   font-size: 0.875rem;
-  transition: all 0.3s linear;
-}
+  transition: all 0.3s linear; }
 
 .nav-center {
   width: 90vw;
   margin: 0 auto;
   text-align: center;
-  padding: 2rem 0;
-}
+  padding: 2rem 0; }
+
 .nav-center h1 {
   font-size: 2.5rem;
   text-transform: capitalize;
-  letter-spacing: 2px;
-}
+  letter-spacing: 2px; }
 
 .articles {
-  text-align: center;
-}
+  text-align: center; }
+
 .match {
-  margin-bottom: 1.5rem;
-}
+  margin-bottom: 1.5rem; }
+
 .match h2 {
-  color: var(--clr-primary);
   text-transform: capitalize;
   letter-spacing: 2px;
-  font-size: 1.75rem;
-}
+  font-size: 1.75rem; }
+
 .match-info {
   margin-bottom: 0.75rem;
-  font-style: italic;
-}
+  font-style: italic; }
+
 .match-info span {
-  margin-right: 0.5rem;
-}
+  margin-right: 0.5rem; }
 
 .btn {
-  background: var(--clr-primary);
-  color: var(--clr-bcg);
   padding: 0.4rem 0.8rem;
   margin-top: 1.5rem;
   border-radius: 5px;
@@ -74,5 +71,4 @@ body {
   transition: all 0.3s linear;
   font-weight: bold;
   letter-spacing: 2px;
-  cursor: pointer;
-}
+  cursor: pointer; }

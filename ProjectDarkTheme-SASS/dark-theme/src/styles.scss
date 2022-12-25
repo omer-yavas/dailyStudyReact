@@ -1,0 +1,92 @@
+@mixin theme($dark: true) {
+  @if $dark {
+    body {
+      background: #282c35;
+      color: #fff;
+    }
+    .match h2 {
+      color: #ffa7c4;
+    }
+    .btn {
+      background: #ffa7c4;
+      color: #fff;
+    }
+  } @else {
+    body {
+      background: #fff;
+      color: #282c35;
+    }
+    .match h2 {
+      color: #d23669;
+    }
+    .btn {
+      background: #d23669;
+      color: #fff;
+    }
+  }
+}
+
+.dark-theme {
+  @include theme($dark: true);
+}
+.light-theme {
+  @include theme($dark: false);
+}
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  font-size: 0.875rem;
+  transition: all 0.3s linear;
+}
+
+.nav-center {
+  width: 90vw;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem 0;
+}
+.nav-center h1 {
+  font-size: 2.5rem;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+}
+
+.articles {
+  text-align: center;
+}
+.match {
+  margin-bottom: 1.5rem;
+}
+.match h2 {
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  font-size: 1.75rem;
+}
+.match-info {
+  margin-bottom: 0.75rem;
+  font-style: italic;
+}
+.match-info span {
+  margin-right: 0.5rem;
+}
+
+.btn {
+  padding: 0.4rem 0.8rem;
+  margin-top: 1.5rem;
+  border-radius: 5px;
+  border-color: transparent;
+  text-transform: capitalize;
+  transition: all 0.3s linear;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
