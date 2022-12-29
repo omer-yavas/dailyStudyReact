@@ -1,12 +1,16 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import styles from './Firebase.module.css';
+import Context from '../store/context';
 const Firebase = () => {
+  const ctx = useContext(Context);
   const [adres, setAdres] = useState('');
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
+
+  const [player, setPlayer] = useState('');
 
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -27,6 +31,7 @@ const Firebase = () => {
 
     // Initialize Cloud Storage and get a reference to the service
     const storage = getStorage(app);
+
     // Create a storage reference from our storage service
     const foto = ref(storage, 'ismailYuksek.jpg');
 
@@ -37,7 +42,7 @@ const Firebase = () => {
 
     // Child references can also take paths delimited by '/'
     //const spaceRef = ref(storage, 'images/space.jpg');}
-  }, []);
+  }, [ctx.playerName]);
 
   return (
     <div>
