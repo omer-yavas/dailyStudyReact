@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import Context from '../store/context';
 
 const TakimListesi = (props) => {
-  const ctx = useContext(Context);
+  let ctx = useContext(Context);
 
   const takimAdi = props.liste;
 
@@ -33,7 +33,8 @@ const TakimListesi = (props) => {
   }, [takimAdi]);
 
   const clickHandler = (event) => {
-    ctx.playerName = event.target.value;
+    //ctx.playerName = event.target.value;
+    ctx = { playerName: event.target.value };
     console.log(ctx.playerName);
   };
 
