@@ -1,9 +1,6 @@
-import { useState, useEffect, useContext } from 'react';
-import Context from '../store/context';
+import { useState, useEffect } from 'react';
 
 const TakimListesi = (props) => {
-  let ctx = useContext(Context);
-
   const takimAdi = props.liste;
 
   const [data, setData] = useState([]);
@@ -33,16 +30,14 @@ const TakimListesi = (props) => {
   }, [takimAdi]);
 
   const clickHandler = (event) => {
-    //ctx.playerName = event.target.value;
-    ctx = { playerName: event.target.value };
-    console.log(ctx.playerName);
+    props.secilen(event.target.value);
   };
 
   return (
     <div>
       {data.map((x) => (
-        <div>
-          <button onClick={clickHandler} value={x} key={x}>
+        <div key={x}>
+          <button onClick={clickHandler} value={x}>
             {x}
           </button>
           <br></br>

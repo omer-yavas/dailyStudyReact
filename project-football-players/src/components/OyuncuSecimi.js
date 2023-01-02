@@ -2,7 +2,7 @@ import Takimlar from './Takimlar';
 import TakimListesi from './TakimListesi';
 import { useState } from 'react';
 
-const OyuncuSecimi = () => {
+const OyuncuSecimi = (props) => {
   const [listeCikar, setListeCikar] = useState(null);
 
   const takimSecimi = (abc) => {
@@ -13,10 +13,16 @@ const OyuncuSecimi = () => {
     }
   };
 
+  const secilenOyuncu = (oyuncu) => {
+    props.secilenOyuncu(`${listeCikar}/${oyuncu}`);
+  };
+
   return (
     <div>
       <Takimlar takim={takimSecimi}></Takimlar>
-      {listeCikar ? <TakimListesi liste={listeCikar}></TakimListesi> : null}
+      {listeCikar ? (
+        <TakimListesi liste={listeCikar} secilen={secilenOyuncu}></TakimListesi>
+      ) : null}
     </div>
   );
 };
