@@ -7,7 +7,7 @@ function App() {
   const [goruntulenecek, setGoruntulenecek] = useState('');
 
   return (
-    <div>
+    <div className="all">
       <h1> Takımını Seç, Favori Oyuncunu Görüntüle</h1>
       <div className="main">
         <OyuncuSecimi
