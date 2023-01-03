@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Firebase from './components/Firebase';
 import OyuncuSecimi from './components/OyuncuSecimi';
+import './App.scss';
 function App() {
   const [data, setData] = useState([]);
   const [goruntulenecek, setGoruntulenecek] = useState('');

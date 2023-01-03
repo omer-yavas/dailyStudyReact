@@ -2,7 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 import { useEffect, useState } from 'react';
-import styles from './Firebase.module.css';
+import './Firebase.scss';
 
 const Firebase = (props) => {
   const [adres, setAdres] = useState('');
@@ -47,7 +47,7 @@ const Firebase = (props) => {
   }, [playerLowerName]);
   return (
     <div>
-      <img className={styles.img} src={adres} alt="blabla"></img>
+      <img className="foto" src={adres} alt="oyuncu foto"></img>
     </div>
   );
 };

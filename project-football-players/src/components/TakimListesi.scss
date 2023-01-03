@@ -1,0 +1,16 @@
+button {
+  //default button özelliklerini değiştirmek için kullanılan kodlar
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  padding: 0;
+  cursor: pointer;
+  font-size: 1.6rem;
+  @media screen and (-ms-high-contrast: active) {
+    border: 2px solid currentcolor;
+  }
+}
+
+.dikeyMesafe {
+  margin-bottom: 1rem;
+}

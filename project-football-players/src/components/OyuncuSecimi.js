@@ -1,6 +1,7 @@
 import Takimlar from './Takimlar';
 import TakimListesi from './TakimListesi';
 import { useState } from 'react';
+import './OyuncuSecimi.scss';
 
 const OyuncuSecimi = (props) => {
   const [listeCikar, setListeCikar] = useState(null);
@@ -18,7 +19,7 @@ const OyuncuSecimi = (props) => {
   };
 
   return (
-    <div>
+    <div className="takimVeListesi">
       <Takimlar takim={takimSecimi}></Takimlar>
       {listeCikar ? (
         <TakimListesi liste={listeCikar} secilen={secilenOyuncu}></TakimListesi>

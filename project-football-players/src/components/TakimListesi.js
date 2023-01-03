@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import './TakimListesi.scss';
 const TakimListesi = (props) => {
   const takimAdi = props.liste;
 
@@ -36,7 +36,7 @@ const TakimListesi = (props) => {
   return (
     <div>
       {data.map((x) => (
-        <div key={x}>
+        <div className="dikeyMesafe" key={x}>
           <button onClick={clickHandler} value={x}>
             {x}
           </button>

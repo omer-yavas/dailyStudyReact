@@ -1,4 +1,4 @@
-import styles from './Takimlar.module.css';
+import './Takimlar.scss';
 import bjkLogo from '../assets/BesiktasLogo.png';
 import fenerLogo from '../assets/FenerbahceLogo.png';
 
