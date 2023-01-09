@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Firebase from './components/Firebase';
 import OyuncuSecimi from './components/OyuncuSecimi';
 import './App.scss';
+import Extra from './Extra';
 function App() {
   const [data, setData] = useState([]);
   const [goruntulenecek, setGoruntulenecek] = useState('');
@@ -15,6 +16,7 @@ function App() {
         ></OyuncuSecimi>
         {goruntulenecek ? <Firebase goruntule={goruntulenecek} /> : null}
       </div>
+      <Extra></Extra>
     </div>
   );
 }
