@@ -1,13 +1,9 @@
-import Teams from './components/Teams';
-import EnterID from './components/EnterIdSeeSquad';
-import SelectedTeamPlayers from './components/SelectedTeamPlayers';
+import { getAllPlayers } from './store/players-slice';
+import { useSelector, useDispatch } from 'react-redux';
+
 const App = () => {
-  return (
-    <div>
-      <EnterID></EnterID>
-      <Teams></Teams>
-      <SelectedTeamPlayers />
-    </div>
-  );
+  const dispatch = useDispatch();
+  dispatch(getAllPlayers());
+  return <div>bbbbbb</div>;
 };
 export default App;

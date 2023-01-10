@@ -1,15 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { TeamsProvider } from './context/teams_context';
-import { PlayersProvider } from './context/players_context';
+import { Provider } from 'react-redux';
+import store from './store/index';
 import './index.css';
 import App from './App';
 
 ReactDOM.render(
-  <TeamsProvider>
-    <PlayersProvider>
-      <App />
-    </PlayersProvider>
-  </TeamsProvider>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
