@@ -2,12 +2,22 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const playersSlice = createSlice({
   name: 'players',
-  initialState: { players: [] },
-  reducers: {},
+  initialState: { players: [], loadingState: false },
+  reducers: {
+    setLoadingState(state) {
+      state.loadingState = !state.loadingState;
+    },
+  },
 });
 
 export const getAllPlayers = () => {
-  return async () => {
+  return async (dispatch) => {
+    dispatch(
+      playersActions.setLoadingState({
+        loadingState: true,
+      })
+    );
+
     const sendRequest = async () => {
       const options = {
         method: 'GET',
@@ -28,6 +38,8 @@ export const getAllPlayers = () => {
     };
 
     await sendRequest();
+
+    dispatch(playersActions.setLoadingState());
   };
 };
 
