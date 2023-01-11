@@ -5,7 +5,7 @@ const filterSlice = createSlice({
   initialState: {
     players: [],
     loadingState: false,
-    categories: [],
+    categories: ['GoalKeeper', 'Defender', 'MiddlePlayer', 'Attack'],
     injuryStatus: false,
     textPlayerSearch: '',
     chosenCategory: 'all',
@@ -17,6 +17,11 @@ const filterSlice = createSlice({
     clearFilters() {},
     searchByText() {},
     categorySelected() {},
+    nationalitySelected() {},
+    heightMinSelected() {},
+    heightMaxSelected() {},
+    weightMinSelected() {},
+    weightMaxSelected() {},
   },
 });
 

@@ -55,6 +55,29 @@ const Filters = () => {
             </div>
           </div>
           {/* end of category >>>position*/}
+
+          {/* nationality*/}
+          <div className="form-control">
+            <h5>Nationality</h5>
+            <select
+              name="nationalitySelector"
+              value="all"
+              onChange={() => {
+                dispatch(filterActions.nationalitySelected());
+              }}
+              className="company"
+            >
+              {['germany', 'france', 'turkey', 'usa'].map((c, index) => {
+                return (
+                  <option key={index} value={c}>
+                    {c}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          {/* Nationality */}
+
           {/* company >>>> age */}
           <div className="form-control">
             <h5>Age</h5>
@@ -92,6 +115,83 @@ const Filters = () => {
             </select>
           </div>
           {/* end of company>>>> age */}
+
+          {/* Height*/}
+          <div className="form-control">
+            <h5>Height</h5>
+            <select
+              name="heightMinSelector"
+              value="all"
+              onChange={() => {
+                dispatch(filterActions.heightMinSelected());
+              }}
+              className="company"
+            >
+              {[180, 181, 182].map((c, index) => {
+                return (
+                  <option key={index} value={c}>
+                    {c}
+                  </option>
+                );
+              })}
+            </select>
+            <select
+              name="heightMaxSelector"
+              value="all"
+              onChange={() => {
+                dispatch(filterActions.heightMaxSelected());
+              }}
+              className="company"
+            >
+              {[190, 191, 192].map((c, index) => {
+                return (
+                  <option key={index} value={c}>
+                    {c}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          {/* Height */}
+
+          {/* Weight*/}
+          <div className="form-control">
+            <h5>Height</h5>
+            <select
+              name="weightMinSelector"
+              value="all"
+              onChange={() => {
+                dispatch(filterActions.weightMinSelected());
+              }}
+              className="company"
+            >
+              {[180, 181, 182].map((c, index) => {
+                return (
+                  <option key={index} value={c}>
+                    {c}
+                  </option>
+                );
+              })}
+            </select>
+            <select
+              name="weightMaxSelector"
+              value="all"
+              onChange={() => {
+                dispatch(filterActions.weightMaxSelected());
+              }}
+              className="company"
+            >
+              {[190, 191, 192].map((c, index) => {
+                return (
+                  <option key={index} value={c}>
+                    {c}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          {/* Weight */}
+
           {/* colors 
           <div className="form-control">
             <h5>colors</h5>
