@@ -1,0 +1,1 @@
+//ülke kısaltmaları buraya konulacak

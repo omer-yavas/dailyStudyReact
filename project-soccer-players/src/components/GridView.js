@@ -1,44 +1,51 @@
 import React from 'react';
-import styled from 'styled-components';
 import PlayerCard from './PlayerCard';
+import { AiFillStar } from 'react-icons/ai';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 const GridView = ({ products }) => {
   const allPlayers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
-    <div className="container">
-      <div className="row">
-        {allPlayers.map((player, index) => {
-          return (
-            <div className="col-4">
-              <PlayerCard key={index} />
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    <Row xs={1} md={4} className="g-4">
+      {allPlayers.map((_, idx) => (
+        <Col>
+          <Card>
+            <Card.Img
+              variant="top"
+              src={'https://media.api-sports.io/football/players/625.png'}
+            />
+            <Card.Body>
+              <Card.Title>Raul Gonzales</Card.Title>
+              <div className="row">
+                <div className="col-6">
+                  <Card.Text>Age:32</Card.Text>
+                </div>
+                <div className="col-6">
+                  <Card.Text>
+                    <AiFillStar />
+                    7.6
+                  </Card.Text>
+                </div>
+              </div>
+            </Card.Body>
+          </Card>
+        </Col>
+      ))}
+    </Row>
+    // {<div className="container">
+    //   <div className="row">
+    //     {allPlayers.map((player, index) => {
+    //       return (
+    //         <div className="col-4">
+    //           <PlayerCard key={index} />
+    //         </div>
+    //       );
+    //     })}
+    //   </div>
+    // </div>}
   );
 };
-
-const Wrapper = styled.section`
-  img {
-    height: 175px;
-  }
-
-  .products-container {
-    display: grid;
-    gap: 2rem 1.5rem;
-  }
-
-  @media (min-width: 992px) {
-    .products-container {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (min-width: 1170px) {
-    .products-container {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-`;
 
 export default GridView;
