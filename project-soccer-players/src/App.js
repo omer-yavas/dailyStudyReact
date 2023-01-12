@@ -2,6 +2,8 @@ import { getAllPlayers } from './store/players-slice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import Filters from './components/Filters';
+import PlayerCard from './components/PlayerCard';
+import GridView from './components/GridView';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -11,8 +13,15 @@ const App = () => {
   // }, []);
   //{loading ? <p>Loading...</p> : <p>bbbbbb</p>}
   return (
-    <div>
-      <Filters></Filters>
+    <div className="container">
+      <div className="row">
+        <div className="col-3">
+          <Filters></Filters>
+        </div>
+        <div className="col-9">
+          <GridView></GridView>
+        </div>
+      </div>
     </div>
   );
 };

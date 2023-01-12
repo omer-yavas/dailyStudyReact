@@ -1,16 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import Product from './Product';
+import PlayerCard from './PlayerCard';
 
 const GridView = ({ products }) => {
+  const allPlayers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
-    <Wrapper>
-      <div className="products-container">
-        {products.map((product) => {
-          return <Product key={product.id} {...product} />;
+    <div className="container">
+      <div className="row">
+        {allPlayers.map((player, index) => {
+          return (
+            <div className="col-4">
+              <PlayerCard key={index} />
+            </div>
+          );
         })}
       </div>
-    </Wrapper>
+    </div>
   );
 };
 
