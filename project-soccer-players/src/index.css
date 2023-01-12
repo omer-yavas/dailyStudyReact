@@ -1,3 +1,5 @@
-:root {
-  background-color: rgb(171, 173, 173);
+.checkBox_border {
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: 0.375rem;
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
 }

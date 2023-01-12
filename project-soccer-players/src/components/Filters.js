@@ -3,6 +3,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import { filterActions } from '../store/filter-slice';
+import { countries } from '../utils/constants';
+import { positions } from '../utils/constants';
+import { ages } from '../utils/constants';
+import { height } from '../utils/constants';
+import { weight } from '../utils/constants';
 
 const Filters = () => {
   const dispatch = useDispatch();
@@ -18,75 +23,80 @@ const Filters = () => {
       <Form>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Search Player</Form.Label>
-          <Form.Control type="text" placeholder="Search" />
+          <Form.Control type="text" placeholder="..." />
         </Form.Group>
+        <Form.Label>Position</Form.Label>
         <Form.Select className="mb-3" aria-label="Default select example">
-          <option>Position</option>
-          <option value="1">Golakeeper</option>
-          <option value="2">Defender</option>
-          <option value="3">MiddlePlayer</option>
+          <option>All</option>
+          {positions.map((position, index) => {
+            return <option key={index}>{position}</option>;
+          })}
         </Form.Select>
+        <Form.Label>Nationality</Form.Label>
         <Form.Select className="mb-3" aria-label="Default select example">
-          <option>Nationality</option>
-          <option value="1">Germany</option>
-          <option value="2">France</option>
-          <option value="3">USA</option>
+          <option>All</option>
+          {countries.map((country, index) => {
+            return <option key={index}>{country}</option>;
+          })}
         </Form.Select>
+        <Form.Label>Age</Form.Label>
         <div className="row mb-3">
           <div className="col-6">
             <Form.Select aria-label="Default select example">
-              <option>Min Age</option>
-              <option value="1">16</option>
-              <option value="2">17</option>
-              <option value="3">18</option>
+              <option>Min</option>
+              {ages.map((age, index) => {
+                return <option key={index}>{age}</option>;
+              })}
             </Form.Select>
           </div>
           <div className="col-6">
             <Form.Select aria-label="Default select example">
-              <option>Max Age</option>
-              <option value="1">33</option>
-              <option value="2">34</option>
-              <option value="3">35</option>
+              <option>Max</option>
+              {ages.map((age, index) => {
+                return <option key={index}>{age}</option>;
+              })}
             </Form.Select>
           </div>
         </div>
+        <Form.Label>Height (cm)</Form.Label>
         <div className="row mb-3">
           <div className="col-6">
             <Form.Select aria-label="Default select example">
-              <option>Min Height</option>
-              <option value="1">171</option>
-              <option value="2">172</option>
-              <option value="3">173</option>
+              <option>Min</option>
+              {height.map((height, index) => {
+                return <option key={index}>{height}</option>;
+              })}
             </Form.Select>
           </div>
           <div className="col-6">
             <Form.Select aria-label="Default select example">
-              <option>Max Height</option>
-              <option value="1">211</option>
-              <option value="2">212</option>
-              <option value="3">213</option>
+              <option>Max</option>
+              {height.map((height, index) => {
+                return <option key={index}>{height}</option>;
+              })}
             </Form.Select>
           </div>
         </div>
+        <Form.Label>Weight (kg)</Form.Label>
         <div className="row mb-3">
           <div className="col-6">
             <Form.Select aria-label="Default select example">
-              <option>Min Weight</option>
-              <option value="1">71</option>
-              <option value="2">72</option>
-              <option value="3">73</option>
+              <option>Min</option>
+              {weight.map((weight, index) => {
+                return <option key={index}>{weight}</option>;
+              })}
             </Form.Select>
           </div>
           <div className="col-6">
             <Form.Select aria-label="Default select example">
-              <option>Max Weight</option>
-              <option value="1">111</option>
-              <option value="2">112</option>
-              <option value="3">113</option>
+              <option>Max</option>
+              {weight.map((weight, index) => {
+                return <option key={index}>{weight}</option>;
+              })}
             </Form.Select>
           </div>
         </div>
-        <div classname="mb-3">
+        <div className="mb-3 checkBox_border">
           <Form.Check id="injuredCheck" label="Just non-injured players" />
         </div>
         <div className="mt-3">
