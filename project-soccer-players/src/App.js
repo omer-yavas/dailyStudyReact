@@ -9,9 +9,11 @@ import Header from './components/Header';
 const App = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.players.loadingState);
-  // useEffect(() => {
-  //   dispatch(getAllPlayers());
-  // }, []);
+
+  useEffect(() => {
+    dispatch(getAllPlayers());
+  }, []);
+
   //{loading ? <p>Loading...</p> : <p>bbbbbb</p>}
   return (
     <div className="container">

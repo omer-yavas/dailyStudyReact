@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import { filterActions } from '../store/filter-slice';
+import { playersActions } from '../store/players-slice';
 import { countries } from '../utils/constants';
 import { positions } from '../utils/constants';
 import { ages } from '../utils/constants';
@@ -11,7 +12,6 @@ import { weight } from '../utils/constants';
 
 const Filters = () => {
   const dispatch = useDispatch();
-  const categories = useSelector((state) => state.filter.categories);
   const injuryStatus = useSelector((state) => state.filter.injuryStatus);
   const textPlayerSearch = useSelector(
     (state) => state.filter.textPlayerSearch
@@ -26,34 +26,72 @@ const Filters = () => {
           <Form.Control type="text" placeholder="..." />
         </Form.Group>
         <Form.Label>Position</Form.Label>
-        <Form.Select className="mb-3" aria-label="Default select example">
-          <option>All</option>
+        <Form.Select
+          className="mb-3"
+          aria-label="Default select example"
+          onChange={(event) =>
+            dispatch(playersActions.filterSelected([1, event.target.value]))
+          }
+        >
+          <option value="All">All</option>
           {positions.map((position, index) => {
-            return <option key={index}>{position}</option>;
+            return (
+              <option key={index} value={position}>
+                {position}
+              </option>
+            );
           })}
         </Form.Select>
         <Form.Label>Nationality</Form.Label>
-        <Form.Select className="mb-3" aria-label="Default select example">
-          <option>All</option>
+        <Form.Select
+          className="mb-3"
+          aria-label="Default select example"
+          onChange={(event) =>
+            dispatch(playersActions.filterSelected([2, event.target.value]))
+          }
+        >
+          <option value="All">All</option>
           {countries.map((country, index) => {
-            return <option key={index}>{country}</option>;
+            return (
+              <option key={index} value={country}>
+                {country}
+              </option>
+            );
           })}
         </Form.Select>
         <Form.Label>Age</Form.Label>
         <div className="row mb-3">
           <div className="col-6">
-            <Form.Select aria-label="Default select example">
-              <option>Min</option>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(event) =>
+                dispatch(playersActions.filterSelected([3, event.target.value]))
+              }
+            >
+              <option value="Min">Min</option>
               {ages.map((age, index) => {
-                return <option key={index}>{age}</option>;
+                return (
+                  <option value={age} key={index}>
+                    {age}
+                  </option>
+                );
               })}
             </Form.Select>
           </div>
           <div className="col-6">
-            <Form.Select aria-label="Default select example">
-              <option>Max</option>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(event) =>
+                dispatch(playersActions.filterSelected([4, event.target.value]))
+              }
+            >
+              <option value="Max">Max</option>
               {ages.map((age, index) => {
-                return <option key={index}>{age}</option>;
+                return (
+                  <option value={age} key={index}>
+                    {age}
+                  </option>
+                );
               })}
             </Form.Select>
           </div>
@@ -61,18 +99,36 @@ const Filters = () => {
         <Form.Label>Height (cm)</Form.Label>
         <div className="row mb-3">
           <div className="col-6">
-            <Form.Select aria-label="Default select example">
-              <option>Min</option>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(event) =>
+                dispatch(playersActions.filterSelected([5, event.target.value]))
+              }
+            >
+              <option value="Min">Min</option>
               {height.map((height, index) => {
-                return <option key={index}>{height}</option>;
+                return (
+                  <option value={height} key={index}>
+                    {height}
+                  </option>
+                );
               })}
             </Form.Select>
           </div>
           <div className="col-6">
-            <Form.Select aria-label="Default select example">
-              <option>Max</option>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(event) =>
+                dispatch(playersActions.filterSelected([6, event.target.value]))
+              }
+            >
+              <option value="Max">Max</option>
               {height.map((height, index) => {
-                return <option key={index}>{height}</option>;
+                return (
+                  <option value={height} key={index}>
+                    {height}
+                  </option>
+                );
               })}
             </Form.Select>
           </div>
