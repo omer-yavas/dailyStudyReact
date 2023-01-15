@@ -1,8 +1,15 @@
-export const positions = ['Goalkeeper', 'Defender', 'Midfielder', 'Attacker'];
-export const ages = Array.from({ length: 20 }, (v, i) => i + 17);
+export const positions = [
+  'All',
+  'Goalkeeper',
+  'Defender',
+  'Midfielder',
+  'Attacker',
+];
+export const ages = Array.from({ length: 23 }, (v, i) => i + 17);
 export const height = Array.from({ length: 55 }, (v, i) => i + 160);
 export const weight = Array.from({ length: 80 }, (v, i) => i + 48);
 export const countries = [
+  'All',
   'Afghanistan',
   'Albania',
   'Algeria',

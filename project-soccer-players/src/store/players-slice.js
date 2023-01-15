@@ -5,6 +5,7 @@ import { dummyPlayers } from '../utils/dummyPlayerApi';
 const playersSlice = createSlice({
   name: 'players',
   initialState: {
+    loadingState: false,
     allPlayers: [],
     filteredPlayers: [],
     filterConfig: {
@@ -18,8 +19,6 @@ const playersSlice = createSlice({
       weightMax: 200,
       injured: 'all',
     },
-
-    loadingState: false,
   },
   reducers: {
     setLoadingState(state) {
@@ -29,45 +28,42 @@ const playersSlice = createSlice({
       state.allPlayers = [...dummyPlayers];
       state.filteredPlayers = [...dummyPlayers];
     },
-
     filterSelected(state, action) {
-      let first = state.filterConfig.position;
-      let second = state.filterConfig.nationality;
-      let third = state.filterConfig.ageMin;
-      let forth = state.filterConfig.ageMax;
-      let fifth = state.filterConfig.heightMin;
-      let sixth = state.filterConfig.heightMax;
-      if (action.payload[0] === 1) {
-        state.filterConfig.position = action.payload[1];
-        first = action.payload[1];
-      } else if (action.payload[0] === 2) {
-        state.filterConfig.nationality = action.payload[1];
-        second = action.payload[1];
-      } else if (action.payload[0] === 3) {
-        state.filterConfig.ageMin = action.payload[1];
-        third = action.payload[1];
-      } else if (action.payload[0] === 4) {
-        state.filterConfig.ageMax = action.payload[1];
-        forth = action.payload[1];
-      } else if (action.payload[0] === 5) {
-        state.filterConfig.heightMin = action.payload[1];
-        fifth = action.payload[1];
-      } else if (action.payload[0] === 6) {
-        state.filterConfig.heightMax = action.payload[1];
-        sixth = action.payload[1];
+      const newFilterObject = { ...state.filterConfig, ...action.payload };
+
+      let filteredValue = [...state.allPlayers];
+
+      if (newFilterObject.position !== 'All') {
+        filteredValue = filteredValue.filter(
+          ({ statistics }) =>
+            statistics[0].games.position === newFilterObject.position
+        );
+      }
+      if (newFilterObject.nationality !== 'All') {
+        filteredValue = filteredValue.filter(
+          ({ player }) => player.nationality === newFilterObject.nationality
+        );
       }
 
-      state.filteredPlayers = state.allPlayers.filter(
-        (arg) =>
-          (first === 'All'
-            ? arg
-            : arg.statistics[0].games.position === first) &&
-          (second === 'All' ? arg : arg.player.nationality === second) &&
-          (third === 'Min' ? arg : arg.player.age >= third) &&
-          (forth === 'Max' ? arg : arg.player.age <= forth) &&
-          (fifth === 'Min' ? arg : arg.player.height >= fifth) &&
-          (sixth === 'Max' ? arg : arg.player.height <= sixth)
-      );
+      if (newFilterObject.ageMin !== 'Min') {
+        filteredValue = filteredValue.filter(
+          ({ player }) => player.age >= newFilterObject.ageMin
+        );
+      }
+
+      if (newFilterObject.ageMax !== 'Max') {
+        filteredValue = filteredValue.filter(
+          ({ player }) => player.age <= newFilterObject.ageMax
+        );
+      }
+      // filteredValue = filteredValue.filter(
+      //   ({ player }) =>
+      //     player.height.match(/(\d+)/) >= newFilterObject.heightMin &&
+      //     player.height.match(/(\d+)/) <= newFilterObject.heightMax
+      // );
+
+      state.filteredPlayers = filteredValue;
+      state.filterConfig = newFilterObject;
     },
   },
 });

@@ -25,21 +25,19 @@ const Filters = () => {
           <Form.Label>Search Player</Form.Label>
           <Form.Control type="text" placeholder="..." />
         </Form.Group>
+
         <Form.Label>Position</Form.Label>
         <Form.Select
           className="mb-3"
           aria-label="Default select example"
           onChange={(event) =>
-            dispatch(playersActions.filterSelected([1, event.target.value]))
+            dispatch(
+              playersActions.filterSelected({ position: event.target.value })
+            )
           }
         >
-          <option value="All">All</option>
           {positions.map((position, index) => {
-            return (
-              <option key={index} value={position}>
-                {position}
-              </option>
-            );
+            return <option key={index}>{position}</option>;
           })}
         </Form.Select>
         <Form.Label>Nationality</Form.Label>
@@ -47,16 +45,13 @@ const Filters = () => {
           className="mb-3"
           aria-label="Default select example"
           onChange={(event) =>
-            dispatch(playersActions.filterSelected([2, event.target.value]))
+            dispatch(
+              playersActions.filterSelected({ nationality: event.target.value })
+            )
           }
         >
-          <option value="All">All</option>
           {countries.map((country, index) => {
-            return (
-              <option key={index} value={country}>
-                {country}
-              </option>
-            );
+            return <option key={index}>{country}</option>;
           })}
         </Form.Select>
         <Form.Label>Age</Form.Label>
@@ -65,16 +60,14 @@ const Filters = () => {
             <Form.Select
               aria-label="Default select example"
               onChange={(event) =>
-                dispatch(playersActions.filterSelected([3, event.target.value]))
+                dispatch(
+                  playersActions.filterSelected({ ageMin: event.target.value })
+                )
               }
             >
-              <option value="Min">Min</option>
+              <option>Min</option>
               {ages.map((age, index) => {
-                return (
-                  <option value={age} key={index}>
-                    {age}
-                  </option>
-                );
+                return <option key={index}>{age}</option>;
               })}
             </Form.Select>
           </div>
@@ -82,16 +75,14 @@ const Filters = () => {
             <Form.Select
               aria-label="Default select example"
               onChange={(event) =>
-                dispatch(playersActions.filterSelected([4, event.target.value]))
+                dispatch(
+                  playersActions.filterSelected({ ageMax: event.target.value })
+                )
               }
             >
-              <option value="Max">Max</option>
+              <option>Max</option>
               {ages.map((age, index) => {
-                return (
-                  <option value={age} key={index}>
-                    {age}
-                  </option>
-                );
+                return <option key={index}>{age}</option>;
               })}
             </Form.Select>
           </div>
@@ -102,7 +93,11 @@ const Filters = () => {
             <Form.Select
               aria-label="Default select example"
               onChange={(event) =>
-                dispatch(playersActions.filterSelected([5, event.target.value]))
+                dispatch(
+                  playersActions.filterSelected({
+                    heightMin: event.target.value,
+                  })
+                )
               }
             >
               <option value="Min">Min</option>
@@ -119,7 +114,11 @@ const Filters = () => {
             <Form.Select
               aria-label="Default select example"
               onChange={(event) =>
-                dispatch(playersActions.filterSelected([6, event.target.value]))
+                dispatch(
+                  playersActions.filterSelected({
+                    heightMax: event.target.value,
+                  })
+                )
               }
             >
               <option value="Max">Max</option>
@@ -136,18 +135,44 @@ const Filters = () => {
         <Form.Label>Weight (kg)</Form.Label>
         <div className="row mb-3">
           <div className="col-6">
-            <Form.Select aria-label="Default select example">
-              <option>Min</option>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(event) =>
+                dispatch(
+                  playersActions.filterSelected({
+                    weightMin: event.target.value,
+                  })
+                )
+              }
+            >
+              <option value="Min">Min</option>
               {weight.map((weight, index) => {
-                return <option key={index}>{weight}</option>;
+                return (
+                  <option key={index} value={weight}>
+                    {weight}
+                  </option>
+                );
               })}
             </Form.Select>
           </div>
           <div className="col-6">
-            <Form.Select aria-label="Default select example">
-              <option>Max</option>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(event) =>
+                dispatch(
+                  playersActions.filterSelected({
+                    weightMax: event.target.value,
+                  })
+                )
+              }
+            >
+              <option value="Max">Max</option>
               {weight.map((weight, index) => {
-                return <option key={index}>{weight}</option>;
+                return (
+                  <option key={index} value={weight}>
+                    {weight}
+                  </option>
+                );
               })}
             </Form.Select>
           </div>

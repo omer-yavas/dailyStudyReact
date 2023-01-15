@@ -15,8 +15,6 @@ const GridView = ({ products }) => {
   };
 
   if (playerArray.length > 0) {
-    console.log(playerArray);
-
     return (
       <Row xs={1} md={4} className="g-4">
         {playerArray.map((player, index) => (
