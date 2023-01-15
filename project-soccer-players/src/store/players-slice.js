@@ -56,11 +56,41 @@ const playersSlice = createSlice({
           ({ player }) => player.age <= newFilterObject.ageMax
         );
       }
-      // filteredValue = filteredValue.filter(
-      //   ({ player }) =>
-      //     player.height.match(/(\d+)/) >= newFilterObject.heightMin &&
-      //     player.height.match(/(\d+)/) <= newFilterObject.heightMax
-      // );
+      if (newFilterObject.heightMin !== 'Min') {
+        filteredValue = filteredValue.filter(
+          ({ player }) =>
+            player.height !== null &&
+            Number(player.height.replace(/\D/g, '')) >=
+              newFilterObject.heightMin
+        );
+      }
+
+      if (newFilterObject.heightMax !== 'Max') {
+        filteredValue = filteredValue.filter(
+          ({ player }) =>
+            player.height !== null &&
+            Number(player.height.replace(/\D/g, '')) <=
+              newFilterObject.heightMax
+        );
+      }
+
+      if (newFilterObject.weightMin !== 'Min') {
+        filteredValue = filteredValue.filter(
+          ({ player }) =>
+            player.weight !== null &&
+            Number(player.weight.replace(/\D/g, '')) >=
+              newFilterObject.weightMin
+        );
+      }
+
+      if (newFilterObject.weightMax !== 'Max') {
+        filteredValue = filteredValue.filter(
+          ({ player }) =>
+            player.weight !== null &&
+            Number(player.weight.replace(/\D/g, '')) <=
+              newFilterObject.weightMax
+        );
+      }
 
       state.filteredPlayers = filteredValue;
       state.filterConfig = newFilterObject;
