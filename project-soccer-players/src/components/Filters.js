@@ -12,11 +12,26 @@ import { weight } from '../utils/constants';
 
 const Filters = () => {
   const dispatch = useDispatch();
-  const injuryStatus = useSelector((state) => state.filter.injuryStatus);
+
+  const clearFiltersHandler = () => {
+    dispatch(
+      playersActions.filterSelected({
+        position: 'All',
+        nationality: 'All',
+        ageMin: 0,
+        ageMax: 100,
+        heightMin: 100,
+        heightMax: 250,
+        weightMin: 0,
+        weightMax: 200,
+        injuredCheck: false,
+      })
+    );
+  };
+
   const textPlayerSearch = useSelector(
     (state) => state.filter.textPlayerSearch
   );
-  const chosenCategory = useSelector((state) => state.filter.chosenCategory);
 
   return (
     <div>
@@ -162,10 +177,19 @@ const Filters = () => {
           </div>
         </div>
         <div className="mb-3 checkBox_border">
-          <Form.Check id="injuredCheck" label="Just non-injured players" />
+          <Form.Check id="injuredCheck">
+            <Form.Check.Input
+              onChange={() =>
+                dispatch(playersActions.filterSelected({ injuredCheck: true }))
+              }
+            ></Form.Check.Input>
+            <Form.Check.Label>Just non-injured players</Form.Check.Label>
+          </Form.Check>
         </div>
         <div className="mt-3">
-          <Button variant="warning">Clear Filters</Button>
+          <Button variant="warning" onClick={clearFiltersHandler}>
+            Clear Filters
+          </Button>
         </div>
       </Form>
     </div>

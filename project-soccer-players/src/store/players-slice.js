@@ -17,7 +17,7 @@ const playersSlice = createSlice({
       heightMax: 250,
       weightMin: 0,
       weightMax: 200,
-      injured: 'all',
+      injuredCheck: false,
     },
   },
   reducers: {
@@ -28,6 +28,7 @@ const playersSlice = createSlice({
       state.allPlayers = [...dummyPlayers];
       state.filteredPlayers = [...dummyPlayers];
     },
+
     filterSelected(state, action) {
       const newFilterObject = { ...state.filterConfig, ...action.payload };
 
@@ -89,6 +90,12 @@ const playersSlice = createSlice({
             player.weight !== null &&
             Number(player.weight.replace(/\D/g, '')) <=
               newFilterObject.weightMax
+        );
+      }
+
+      if (newFilterObject.injuredCheck === true) {
+        filteredValue = filteredValue.filter(
+          ({ player }) => player.injured === false
         );
       }
 

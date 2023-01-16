@@ -8,7 +8,7 @@ import Row from 'react-bootstrap/Row';
 
 const GridView = ({ products }) => {
   const playerArray = useSelector((state) => state.players.filteredPlayers);
-
+  console.log(playerArray);
   const numberPrecisionHandler = (number) => {
     const exactRating = Number(number).toPrecision(2);
     return exactRating;
