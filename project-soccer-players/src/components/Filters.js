@@ -1,22 +1,30 @@
 import React from 'react';
-import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux';
-import { filterActions } from '../store/filter-slice';
 import { playersActions } from '../store/players-slice';
-import { countries } from '../utils/constants';
-import { positions } from '../utils/constants';
+import { countries, positions } from '../utils/constants';
 import { ages } from '../utils/constants';
 import { height } from '../utils/constants';
 import { weight } from '../utils/constants';
 
 const Filters = () => {
   const dispatch = useDispatch();
-  const [query, setQuery] = useState('');
+
+  const {
+    searchValue,
+    position,
+    nationality,
+    ageMin,
+    ageMax,
+    heightMin,
+    heightMax,
+    weightMin,
+    weightMax,
+    injuredCheck,
+  } = useSelector((state) => state.players.filterConfig);
 
   const clearFiltersHandler = () => {
-    setQuery('');
     dispatch(
       playersActions.filterSelected({
         searchValue: '',
@@ -35,34 +43,27 @@ const Filters = () => {
 
   const formSubmissionHandler = (event) => {
     event.preventDefault();
-    dispatch(playersActions.filterSelected({ searchValue: `${query}` }));
   };
 
   return (
     <div>
       <Form onSubmit={formSubmissionHandler}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Search Player</Form.Label>
+          <Form.Label>Name</Form.Label>
           <div className="row">
-            <div className="col-8">
+            <div className="col-12">
               <Form.Control
                 type="search"
                 placeholder="..."
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-              />
-            </div>
-            <div className="col-1">
-              <Button
-                variant="primary"
-                onClick={() =>
+                value={searchValue}
+                onChange={(event) =>
                   dispatch(
-                    playersActions.filterSelected({ searchValue: `${query}` })
+                    playersActions.filterSelected({
+                      searchValue: event.target.value,
+                    })
                   )
                 }
-              >
-                Search
-              </Button>
+              />
             </div>
           </div>
         </Form.Group>
@@ -70,7 +71,7 @@ const Filters = () => {
         <Form.Label>Position</Form.Label>
         <Form.Select
           className="mb-3"
-          aria-label="Default select example"
+          value={position}
           onChange={(event) =>
             dispatch(
               playersActions.filterSelected({ position: event.target.value })
@@ -84,7 +85,7 @@ const Filters = () => {
         <Form.Label>Nationality</Form.Label>
         <Form.Select
           className="mb-3"
-          aria-label="Default select example"
+          value={nationality}
           onChange={(event) =>
             dispatch(
               playersActions.filterSelected({ nationality: event.target.value })
@@ -99,7 +100,7 @@ const Filters = () => {
         <div className="row mb-3">
           <div className="col-6">
             <Form.Select
-              aria-label="Default select example"
+              value={ageMin}
               onChange={(event) =>
                 dispatch(
                   playersActions.filterSelected({ ageMin: event.target.value })
@@ -114,7 +115,7 @@ const Filters = () => {
           </div>
           <div className="col-6">
             <Form.Select
-              aria-label="Default select example"
+              value={ageMax}
               onChange={(event) =>
                 dispatch(
                   playersActions.filterSelected({ ageMax: event.target.value })
@@ -132,7 +133,7 @@ const Filters = () => {
         <div className="row mb-3">
           <div className="col-6">
             <Form.Select
-              aria-label="Default select example"
+              value={heightMin}
               onChange={(event) =>
                 dispatch(
                   playersActions.filterSelected({
@@ -149,7 +150,7 @@ const Filters = () => {
           </div>
           <div className="col-6">
             <Form.Select
-              aria-label="Default select example"
+              value={heightMax}
               onChange={(event) =>
                 dispatch(
                   playersActions.filterSelected({
@@ -169,7 +170,7 @@ const Filters = () => {
         <div className="row mb-3">
           <div className="col-6">
             <Form.Select
-              aria-label="Default select example"
+              value={weightMin}
               onChange={(event) =>
                 dispatch(
                   playersActions.filterSelected({
@@ -186,7 +187,7 @@ const Filters = () => {
           </div>
           <div className="col-6">
             <Form.Select
-              aria-label="Default select example"
+              value={weightMax}
               onChange={(event) =>
                 dispatch(
                   playersActions.filterSelected({
@@ -205,6 +206,7 @@ const Filters = () => {
         <div className="mb-3 checkBox_border">
           <Form.Check id="injuredCheck">
             <Form.Check.Input
+              checked={injuredCheck}
               onChange={() =>
                 dispatch(playersActions.filterSelected({ injuredCheck: true }))
               }
