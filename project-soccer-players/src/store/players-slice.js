@@ -9,6 +9,7 @@ const playersSlice = createSlice({
     allPlayers: [],
     filteredPlayers: [],
     filterConfig: {
+      searchValue: '',
       position: 'All',
       nationality: 'All',
       ageMin: 0,
@@ -33,6 +34,12 @@ const playersSlice = createSlice({
       const newFilterObject = { ...state.filterConfig, ...action.payload };
 
       let filteredValue = [...state.allPlayers];
+
+      if (newFilterObject.searchValue !== '') {
+        filteredValue = filteredValue.filter(({ player }) =>
+          player.name.includes(newFilterObject.searchValue)
+        );
+      }
 
       if (newFilterObject.position !== 'All') {
         filteredValue = filteredValue.filter(

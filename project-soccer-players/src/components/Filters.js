@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux';
@@ -12,10 +13,13 @@ import { weight } from '../utils/constants';
 
 const Filters = () => {
   const dispatch = useDispatch();
+  const [query, setQuery] = useState('');
 
   const clearFiltersHandler = () => {
+    setQuery('');
     dispatch(
       playersActions.filterSelected({
+        searchValue: '',
         position: 'All',
         nationality: 'All',
         ageMin: 0,
@@ -29,16 +33,38 @@ const Filters = () => {
     );
   };
 
-  const textPlayerSearch = useSelector(
-    (state) => state.filter.textPlayerSearch
-  );
+  const formSubmissionHandler = (event) => {
+    event.preventDefault();
+    dispatch(playersActions.filterSelected({ searchValue: `${query}` }));
+  };
 
   return (
     <div>
-      <Form>
+      <Form onSubmit={formSubmissionHandler}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Search Player</Form.Label>
-          <Form.Control type="text" placeholder="..." />
+          <div className="row">
+            <div className="col-8">
+              <Form.Control
+                type="search"
+                placeholder="..."
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+              />
+            </div>
+            <div className="col-1">
+              <Button
+                variant="primary"
+                onClick={() =>
+                  dispatch(
+                    playersActions.filterSelected({ searchValue: `${query}` })
+                  )
+                }
+              >
+                Search
+              </Button>
+            </div>
+          </div>
         </Form.Group>
 
         <Form.Label>Position</Form.Label>
