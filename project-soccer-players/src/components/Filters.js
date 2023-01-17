@@ -4,9 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import { playersActions } from '../store/players-slice';
 import { countries, positions } from '../utils/constants';
-import { ages } from '../utils/constants';
-import { height } from '../utils/constants';
-import { weight } from '../utils/constants';
+import './Filters.scss';
 
 const Filters = () => {
   const dispatch = useDispatch();
@@ -15,6 +13,8 @@ const Filters = () => {
     searchValue,
     position,
     nationality,
+    ratingMin,
+    ratingMax,
     ageMin,
     ageMax,
     heightMin,
@@ -30,12 +30,14 @@ const Filters = () => {
         searchValue: '',
         position: 'All',
         nationality: 'All',
-        ageMin: 0,
-        ageMax: 100,
-        heightMin: 100,
-        heightMax: 250,
-        weightMin: 0,
-        weightMax: 200,
+        ratingMin: '',
+        ratingMax: '',
+        ageMin: '',
+        ageMax: '',
+        heightMin: '',
+        heightMax: '',
+        weightMin: '',
+        weightMax: '',
         injuredCheck: false,
       })
     );
@@ -46,8 +48,16 @@ const Filters = () => {
   };
 
   return (
-    <div>
+    <div className="filterBox">
       <Form onSubmit={formSubmissionHandler}>
+        <div className="mt-3 d-flex justify-content-end">
+          <button
+            className="btn btn-link p-0 m-0 d-inline align-baseline clearAll"
+            onClick={clearFiltersHandler}
+          >
+            Clear Filters
+          </button>
+        </div>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Name</Form.Label>
           <div className="row">
@@ -96,43 +106,70 @@ const Filters = () => {
             return <option key={index}>{country}</option>;
           })}
         </Form.Select>
+        <Form.Label>Rating</Form.Label>
+        <div className="row mb-3">
+          <div className="col-6">
+            <Form.Control
+              type="search"
+              placeholder="Min"
+              value={ratingMin}
+              onChange={(event) =>
+                dispatch(
+                  playersActions.filterSelected({
+                    ratingMin: event.target.value,
+                  })
+                )
+              }
+            />
+          </div>
+          <div className="col-6">
+            <Form.Control
+              type="search"
+              placeholder="Max"
+              value={ratingMax}
+              onChange={(event) =>
+                dispatch(
+                  playersActions.filterSelected({
+                    ratingMax: event.target.value,
+                  })
+                )
+              }
+            />
+          </div>
+        </div>
         <Form.Label>Age</Form.Label>
         <div className="row mb-3">
           <div className="col-6">
-            <Form.Select
+            <Form.Control
+              type="search"
+              placeholder="Min"
               value={ageMin}
               onChange={(event) =>
                 dispatch(
                   playersActions.filterSelected({ ageMin: event.target.value })
                 )
               }
-            >
-              <option>Min</option>
-              {ages.map((age, index) => {
-                return <option key={index}>{age}</option>;
-              })}
-            </Form.Select>
+            />
           </div>
           <div className="col-6">
-            <Form.Select
+            <Form.Control
+              type="search"
+              placeholder="Max"
               value={ageMax}
               onChange={(event) =>
                 dispatch(
                   playersActions.filterSelected({ ageMax: event.target.value })
                 )
               }
-            >
-              <option>Max</option>
-              {ages.map((age, index) => {
-                return <option key={index}>{age}</option>;
-              })}
-            </Form.Select>
+            />
           </div>
         </div>
         <Form.Label>Height (cm)</Form.Label>
         <div className="row mb-3">
           <div className="col-6">
-            <Form.Select
+            <Form.Control
+              type="search"
+              placeholder="Min"
               value={heightMin}
               onChange={(event) =>
                 dispatch(
@@ -141,15 +178,12 @@ const Filters = () => {
                   })
                 )
               }
-            >
-              <option>Min</option>
-              {height.map((height, index) => {
-                return <option key={index}>{height}</option>;
-              })}
-            </Form.Select>
+            />
           </div>
           <div className="col-6">
-            <Form.Select
+            <Form.Control
+              type="search"
+              placeholder="Min"
               value={heightMax}
               onChange={(event) =>
                 dispatch(
@@ -158,18 +192,15 @@ const Filters = () => {
                   })
                 )
               }
-            >
-              <option>Max</option>
-              {height.map((height, index) => {
-                return <option key={index}>{height}</option>;
-              })}
-            </Form.Select>
+            />
           </div>
         </div>
         <Form.Label>Weight (kg)</Form.Label>
         <div className="row mb-3">
           <div className="col-6">
-            <Form.Select
+            <Form.Control
+              type="search"
+              placeholder="Min"
               value={weightMin}
               onChange={(event) =>
                 dispatch(
@@ -178,15 +209,12 @@ const Filters = () => {
                   })
                 )
               }
-            >
-              <option>Min</option>
-              {weight.map((weight, index) => {
-                return <option key={index}>{weight}</option>;
-              })}
-            </Form.Select>
+            />
           </div>
           <div className="col-6">
-            <Form.Select
+            <Form.Control
+              type="search"
+              placeholder="Min"
               value={weightMax}
               onChange={(event) =>
                 dispatch(
@@ -195,12 +223,7 @@ const Filters = () => {
                   })
                 )
               }
-            >
-              <option>Max</option>
-              {weight.map((weight, index) => {
-                return <option key={index}>{weight}</option>;
-              })}
-            </Form.Select>
+            />
           </div>
         </div>
         <div className="mb-3 checkBox_border">
@@ -208,16 +231,13 @@ const Filters = () => {
             <Form.Check.Input
               checked={injuredCheck}
               onChange={() =>
-                dispatch(playersActions.filterSelected({ injuredCheck: true }))
+                dispatch(
+                  playersActions.filterSelected({ injuredCheck: !injuredCheck })
+                )
               }
             ></Form.Check.Input>
             <Form.Check.Label>Just non-injured players</Form.Check.Label>
           </Form.Check>
-        </div>
-        <div className="mt-3">
-          <Button variant="warning" onClick={clearFiltersHandler}>
-            Clear Filters
-          </Button>
         </div>
       </Form>
     </div>

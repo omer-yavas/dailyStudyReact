@@ -12,12 +12,14 @@ const playersSlice = createSlice({
       searchValue: '',
       position: 'All',
       nationality: 'All',
-      ageMin: 0,
-      ageMax: 100,
-      heightMin: 100,
-      heightMax: 250,
-      weightMin: 0,
-      weightMax: 200,
+      ratingMin: '',
+      ratingMax: '',
+      ageMin: '',
+      ageMax: '',
+      heightMin: '',
+      heightMax: '',
+      weightMin: '',
+      weightMax: '',
       injuredCheck: false,
     },
   },
@@ -52,19 +54,33 @@ const playersSlice = createSlice({
           ({ player }) => player.nationality === newFilterObject.nationality
         );
       }
+      if (newFilterObject.ratingMin !== '') {
+        filteredValue = filteredValue.filter(({ statistics }) =>
+          statistics[0].games.rating !== null
+            ? Number(statistics[0].games.rating) >= newFilterObject.ratingMin
+            : false
+        );
+      }
 
-      if (newFilterObject.ageMin !== 'Min') {
+      if (newFilterObject.ratingMax !== '') {
+        filteredValue = filteredValue.filter(({ statistics }) =>
+          statistics[0].games.rating !== null
+            ? Number(statistics[0].games.rating) <= newFilterObject.ratingMax
+            : false
+        );
+      }
+      if (newFilterObject.ageMin !== '') {
         filteredValue = filteredValue.filter(
           ({ player }) => player.age >= newFilterObject.ageMin
         );
       }
 
-      if (newFilterObject.ageMax !== 'Max') {
+      if (newFilterObject.ageMax !== '') {
         filteredValue = filteredValue.filter(
           ({ player }) => player.age <= newFilterObject.ageMax
         );
       }
-      if (newFilterObject.heightMin !== 'Min') {
+      if (newFilterObject.heightMin !== '') {
         filteredValue = filteredValue.filter(
           ({ player }) =>
             player.height !== null &&
@@ -73,7 +89,7 @@ const playersSlice = createSlice({
         );
       }
 
-      if (newFilterObject.heightMax !== 'Max') {
+      if (newFilterObject.heightMax !== '') {
         filteredValue = filteredValue.filter(
           ({ player }) =>
             player.height !== null &&
@@ -82,7 +98,7 @@ const playersSlice = createSlice({
         );
       }
 
-      if (newFilterObject.weightMin !== 'Min') {
+      if (newFilterObject.weightMin !== '') {
         filteredValue = filteredValue.filter(
           ({ player }) =>
             player.weight !== null &&
@@ -91,7 +107,7 @@ const playersSlice = createSlice({
         );
       }
 
-      if (newFilterObject.weightMax !== 'Max') {
+      if (newFilterObject.weightMax !== '') {
         filteredValue = filteredValue.filter(
           ({ player }) =>
             player.weight !== null &&

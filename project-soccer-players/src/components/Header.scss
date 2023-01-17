@@ -1,0 +1,35 @@
+@import '../styles/constants';
+
+.header {
+  height: 50vh;
+  background-image: url(../utils/playerCard.png);
+  background-size: cover;
+  background-position: bottom;
+  position: relative;
+  margin-bottom: 2rem;
+
+  &__text-box {
+    position: absolute;
+    top: 20%;
+    left: 25%;
+  }
+}
+
+.heading-primary {
+  color: $color-white;
+  //text-transform: uppercase;
+
+  &--main {
+    display: block;
+    font-size: 4rem;
+    font-weight: 600;
+    letter-spacing: 1.5rem;
+  }
+
+  &--sub {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    //letter-spacing: 1rem;
+  }
+}

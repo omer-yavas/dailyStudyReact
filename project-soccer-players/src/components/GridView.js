@@ -5,6 +5,7 @@ import { AiFillStar } from 'react-icons/ai';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import './GridView.scss';
 
 const GridView = ({ products }) => {
   const playerArray = useSelector((state) => state.players.filteredPlayers);
@@ -19,17 +20,18 @@ const GridView = ({ products }) => {
       <Row xs={1} md={4} className="g-4">
         {playerArray.map((player, index) => (
           <Col>
-            <Card>
+            <Card className="Card">
               <Card.Img variant="top" src={player.player.photo} />
               <Card.Body>
                 <Card.Title>{player.player.name}</Card.Title>
                 <div className="row">
                   <div className="col-6">
-                    <Card.Text>{player.player.age}</Card.Text>
+                    <Card.Text>Age:{player.player.age}</Card.Text>
                   </div>
                   <div className="col-6">
-                    <Card.Text>
+                    <Card.Text className="d-flex justify-content-end align-items-center">
                       <AiFillStar />
+                      Rate:
                       {numberPrecisionHandler(
                         player.statistics[0].games.rating
                       )}

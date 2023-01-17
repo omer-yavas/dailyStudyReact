@@ -5,6 +5,7 @@ import Filters from './components/Filters';
 import PlayerCard from './components/PlayerCard';
 import GridView from './components/GridView';
 import Header from './components/Header';
+import './styles/main.scss';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const App = () => {
 
   //{loading ? <p>Loading...</p> : <p>bbbbbb</p>}
   return (
-    <div className="container">
+    <div className="container ">
       <div className="row">
         <Header></Header>
       </div>
