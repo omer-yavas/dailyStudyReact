@@ -8,6 +8,8 @@ const playersSlice = createSlice({
     loadingState: false,
     allPlayers: [],
     filteredPlayers: [],
+    favouritePlayerIDs: [],
+    modalShow: false,
     filterConfig: {
       searchValue: '',
       position: 'All',
@@ -24,12 +26,30 @@ const playersSlice = createSlice({
     },
   },
   reducers: {
+    modalOpen(state) {
+      state.modalShow = true;
+    },
+    modalClose(state) {
+      state.modalShow = false;
+    },
     setLoadingState(state) {
       state.loadingState = !state.loadingState;
     },
     fillPlayersArray(state) {
       state.allPlayers = [...dummyPlayers];
       state.filteredPlayers = [...dummyPlayers];
+    },
+
+    favouriteSelected(state, action) {
+      const newSelect = { ...action.payload };
+
+      if (state.favouritePlayerIDs.includes(newSelect.id)) {
+        state.favouritePlayerIDs = state.favouritePlayerIDs.filter(
+          (item) => item !== newSelect.id
+        );
+      } else {
+        state.favouritePlayerIDs.push(newSelect.id);
+      }
     },
 
     filterSelected(state, action) {
