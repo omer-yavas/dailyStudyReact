@@ -1,5 +1,16 @@
+@import '../styles/constants';
+
 .clearAll {
-  color: rgb(0, 0, 0);
+  font-family: 'Verdana' sans-serif;
+  font-size: 1em;
+  text-align: left;
+  text-decoration: underline;
+  color: $color-white;
+  background: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
 }
 
 .checkBox_border {

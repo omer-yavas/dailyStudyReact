@@ -61,35 +61,26 @@ const GridView = ({ products }) => {
                     ? 'No'
                     : 'No data'}
                 </p>
-                <Form.Check id="favouriteCheck">
-                  <Form.Check.Input
-                    checked={favouritePlayerIDs.includes(player.id)}
-                    onChange={() =>
-                      dispatch(
-                        playersActions.favouriteSelected({
-                          id: player.id,
-                        })
-                      )
-                    }
-                  ></Form.Check.Input>
-                  <Form.Check.Label>Add Favourites</Form.Check.Label>
-                </Form.Check>
+                <div className="checkBox_border">
+                  <Form.Check id="favouriteCheck">
+                    <Form.Check.Input
+                      checked={favouritePlayerIDs.includes(player.id)}
+                      onChange={() =>
+                        dispatch(
+                          playersActions.favouriteSelected({
+                            id: player.id,
+                          })
+                        )
+                      }
+                    ></Form.Check.Input>
+                    <Form.Check.Label>Add Favourites</Form.Check.Label>
+                  </Form.Check>
+                </div>
               </div>
             </Card>
           </Col>
         ))}
       </Row>
-      // {<div className="container">
-      //   <div className="row">
-      //     {allPlayers.map((player, index) => {
-      //       return (
-      //         <div className="col-4">
-      //           <PlayerCard key={index} />
-      //         </div>
-      //       );
-      //     })}
-      //   </div>
-      // </div>}
     );
   } else {
     return <div />;

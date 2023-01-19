@@ -29,14 +29,17 @@ const App = () => {
       <div className="row">
         <div className="col-3">
           <Filters />
-          <Button
-            variant="primary"
-            onClick={() => dispatch(playersActions.modalOpen())}
-          >
-            Favourites List
-          </Button>
         </div>
         <div className="col-9">
+          <div className="favouriteListButton">
+            <Button
+              variant="primary"
+              onClick={() => dispatch(playersActions.modalOpen())}
+            >
+              Favourite Players List
+            </Button>
+          </div>
+
           <GridView />
         </div>
       </div>

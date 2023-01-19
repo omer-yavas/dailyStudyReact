@@ -1,3 +1,5 @@
+@import './constants';
+
 * {
   margin: 0;
   padding: 0;
@@ -14,5 +16,11 @@ body {
 }
 
 #root {
-  background-color: rgba(rgba(44, 16, 132, 255), 1);
+  background-image: linear-gradient(
+      to bottom,
+      rgba($color-white, 0.1),
+      rgba($color-navy, 0.8)
+    ),
+    url(../utils/back1.jpg);
+  background-size: cover;
 }

@@ -50,11 +50,8 @@ const Filters = () => {
   return (
     <div className="filterBox">
       <Form onSubmit={formSubmissionHandler}>
-        <div className="mt-3 d-flex justify-content-end">
-          <button
-            className="btn btn-link p-0 m-0 d-inline align-baseline clearAll"
-            onClick={clearFiltersHandler}
-          >
+        <div className="mt-3 d-flex justify-content-end ">
+          <button className="clearAll" onClick={clearFiltersHandler}>
             Clear Filters
           </button>
         </div>
