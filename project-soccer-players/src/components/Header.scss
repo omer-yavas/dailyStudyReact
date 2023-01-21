@@ -1,23 +1,28 @@
 @import '../styles/constants';
 
 .header {
-  height: 50vh;
-  background-image: url(../utils/playerCard.png);
-  background-size: cover;
-  background-position: bottom;
+  height: 40vh;
   position: relative;
   margin-bottom: 2rem;
 
   &__text-box {
     position: absolute;
     top: 20%;
-    left: 25%;
+    left: 20%;
+  }
+  &__progress-bar {
+    width: 100%;
+    position: absolute;
+    top: 100%;
+
+    height: 2px;
+    background: linear-gradient(to right, #5af7dc, #06113a);
+    overflow: hidden;
   }
 }
 
 .heading-primary {
   color: $color-white;
-  //text-transform: uppercase;
 
   &--main {
     display: block;

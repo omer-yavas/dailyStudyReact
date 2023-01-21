@@ -22,12 +22,12 @@ const App = () => {
 
   //{loading ? <p>Loading...</p> : <p>bbbbbb</p>}
   return (
-    <div className="container ">
-      <div className="row">
+    <div className="page">
+      <div className="headerBox">
         <Header />
       </div>
       <div className="row">
-        <div className="col-3">
+        <div className="col-3 filterBox">
           <Filters />
         </div>
         <div className="col-9">
@@ -39,11 +39,9 @@ const App = () => {
               Favourite Players List
             </Button>
           </div>
-
           <GridView />
         </div>
       </div>
-
       <Footer />
       <Favourites />
     </div>

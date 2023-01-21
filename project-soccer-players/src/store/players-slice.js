@@ -32,6 +32,9 @@ const playersSlice = createSlice({
     modalClose(state) {
       state.modalShow = false;
     },
+    clearFavourites(state) {
+      state.favouritePlayerIDs = [];
+    },
     setLoadingState(state) {
       state.loadingState = !state.loadingState;
     },
@@ -74,7 +77,7 @@ const playersSlice = createSlice({
           ({ player }) => player.nationality === newFilterObject.nationality
         );
       }
-      if (newFilterObject.ratingMin !== '') {
+      if (newFilterObject.ratingMin !== '' && newFilterObject.ratingMin >= 0) {
         filteredValue = filteredValue.filter(({ statistics }) =>
           statistics[0].games.rating !== null
             ? Number(statistics[0].games.rating) >= newFilterObject.ratingMin
@@ -82,25 +85,25 @@ const playersSlice = createSlice({
         );
       }
 
-      if (newFilterObject.ratingMax !== '') {
+      if (newFilterObject.ratingMax !== '' && newFilterObject.ratingMax > 0) {
         filteredValue = filteredValue.filter(({ statistics }) =>
           statistics[0].games.rating !== null
             ? Number(statistics[0].games.rating) <= newFilterObject.ratingMax
             : false
         );
       }
-      if (newFilterObject.ageMin !== '') {
+      if (newFilterObject.ageMin !== '' && newFilterObject.ageMin >= 0) {
         filteredValue = filteredValue.filter(
           ({ player }) => player.age >= newFilterObject.ageMin
         );
       }
 
-      if (newFilterObject.ageMax !== '') {
+      if (newFilterObject.ageMax !== '' && newFilterObject.ageMax > 0) {
         filteredValue = filteredValue.filter(
           ({ player }) => player.age <= newFilterObject.ageMax
         );
       }
-      if (newFilterObject.heightMin !== '') {
+      if (newFilterObject.heightMin !== '' && newFilterObject.heightMin >= 0) {
         filteredValue = filteredValue.filter(
           ({ player }) =>
             player.height !== null &&
@@ -109,7 +112,7 @@ const playersSlice = createSlice({
         );
       }
 
-      if (newFilterObject.heightMax !== '') {
+      if (newFilterObject.heightMax !== '' && newFilterObject.heightMax > 0) {
         filteredValue = filteredValue.filter(
           ({ player }) =>
             player.height !== null &&
@@ -118,7 +121,7 @@ const playersSlice = createSlice({
         );
       }
 
-      if (newFilterObject.weightMin !== '') {
+      if (newFilterObject.weightMin !== '' && newFilterObject.weightMin >= 0) {
         filteredValue = filteredValue.filter(
           ({ player }) =>
             player.weight !== null &&
@@ -127,7 +130,7 @@ const playersSlice = createSlice({
         );
       }
 
-      if (newFilterObject.weightMax !== '') {
+      if (newFilterObject.weightMax !== '' && newFilterObject.weightMax > 0) {
         filteredValue = filteredValue.filter(
           ({ player }) =>
             player.weight !== null &&

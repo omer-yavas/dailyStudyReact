@@ -25,3 +25,7 @@
   background-color: rgb(28, 111, 169);
   color: rgb(255, 255, 255);
 }
+
+.invalidInput:invalid {
+  background-color: rgb(234, 101, 101);
+}

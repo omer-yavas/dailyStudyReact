@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
 import { useSelector, useDispatch } from 'react-redux';
 import { playersActions } from '../store/players-slice';
+import Button from 'react-bootstrap/esm/Button';
 
 const Favourites = () => {
   const dispatch = useDispatch();
@@ -71,6 +72,15 @@ const Favourites = () => {
       ) : (
         <p className="noFavourite">"No Favourite Player Yet!"</p>
       )}
+      {favouritePlayerIDs.length > 0 ? (
+        <Button
+          variant="danger"
+          className="clearButton"
+          onClick={() => dispatch(playersActions.clearFavourites())}
+        >
+          Clear Favourites List
+        </Button>
+      ) : null}
     </Modal>
   );
 };

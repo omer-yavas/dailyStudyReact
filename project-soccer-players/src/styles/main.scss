@@ -1,9 +1,15 @@
 @import 'reset';
 
-.container {
-  margin: 0 2rem;
-}
 .favouriteListButton {
   text-align: end;
   margin-bottom: 1rem;
+}
+
+.page {
+  padding: 1rem;
+}
+
+.filterBox {
+  position: sticky;
+  top: 1rem;
 }

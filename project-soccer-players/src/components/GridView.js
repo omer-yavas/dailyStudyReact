@@ -83,7 +83,11 @@ const GridView = ({ products }) => {
       </Row>
     );
   } else {
-    return <div />;
+    return (
+      <div>
+        <p className="noPlayer">No player matches your filter!</p>
+      </div>
+    );
   }
 };
 

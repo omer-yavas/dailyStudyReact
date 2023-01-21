@@ -24,6 +24,15 @@ const Filters = () => {
     injuredCheck,
   } = useSelector((state) => state.players.filterConfig);
 
+  const ratingErrorMessage =
+    ratingMax < 0 || ratingMin < 0 ? 'Only positive values are VALID!' : null;
+  const ageErrorMessage =
+    ageMax < 0 || ageMin < 0 ? 'Only positive values are VALID!' : null;
+  const heightErrorMessage =
+    heightMax < 0 || heightMin < 0 ? 'Only positive values are VALID!' : null;
+  const weightErrorMessage =
+    weightMax < 0 || weightMin < 0 ? 'Only positive values are VALID!' : null;
+
   const clearFiltersHandler = () => {
     dispatch(
       playersActions.filterSelected({
@@ -105,9 +114,12 @@ const Filters = () => {
         </Form.Select>
         <Form.Label>Rating</Form.Label>
         <div className="row mb-3">
+          {ratingErrorMessage ? <p>{ratingErrorMessage}</p> : null}
           <div className="col-6">
             <Form.Control
-              type="search"
+              className="invalidInput"
+              type="number"
+              min="0"
               placeholder="Min"
               value={ratingMin}
               onChange={(event) =>
@@ -121,7 +133,9 @@ const Filters = () => {
           </div>
           <div className="col-6">
             <Form.Control
-              type="search"
+              className="invalidInput"
+              type="number"
+              min="0"
               placeholder="Max"
               value={ratingMax}
               onChange={(event) =>
@@ -136,9 +150,12 @@ const Filters = () => {
         </div>
         <Form.Label>Age</Form.Label>
         <div className="row mb-3">
+          {ageErrorMessage ? <p>{ageErrorMessage}</p> : null}
           <div className="col-6">
             <Form.Control
-              type="search"
+              className="invalidInput"
+              type="number"
+              min="0"
               placeholder="Min"
               value={ageMin}
               onChange={(event) =>
@@ -150,7 +167,9 @@ const Filters = () => {
           </div>
           <div className="col-6">
             <Form.Control
-              type="search"
+              className="invalidInput"
+              type="number"
+              min="0"
               placeholder="Max"
               value={ageMax}
               onChange={(event) =>
@@ -163,9 +182,12 @@ const Filters = () => {
         </div>
         <Form.Label>Height (cm)</Form.Label>
         <div className="row mb-3">
+          {heightErrorMessage ? <p>{heightErrorMessage}</p> : null}
           <div className="col-6">
             <Form.Control
-              type="search"
+              className="invalidInput"
+              type="number"
+              min="0"
               placeholder="Min"
               value={heightMin}
               onChange={(event) =>
@@ -179,8 +201,10 @@ const Filters = () => {
           </div>
           <div className="col-6">
             <Form.Control
-              type="search"
-              placeholder="Min"
+              className="invalidInput"
+              type="number"
+              min="0"
+              placeholder="Max"
               value={heightMax}
               onChange={(event) =>
                 dispatch(
@@ -194,9 +218,12 @@ const Filters = () => {
         </div>
         <Form.Label>Weight (kg)</Form.Label>
         <div className="row mb-3">
+          {weightErrorMessage ? <p>{weightErrorMessage}</p> : null}
           <div className="col-6">
             <Form.Control
-              type="search"
+              className="invalidInput"
+              type="number"
+              min="0"
               placeholder="Min"
               value={weightMin}
               onChange={(event) =>
@@ -210,8 +237,10 @@ const Filters = () => {
           </div>
           <div className="col-6">
             <Form.Control
-              type="search"
-              placeholder="Min"
+              className="invalidInput"
+              type="number"
+              min="0"
+              placeholder="Max"
               value={weightMax}
               onChange={(event) =>
                 dispatch(
