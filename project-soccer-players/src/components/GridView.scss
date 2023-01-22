@@ -5,8 +5,9 @@
   perspective: 150rem;
   -moz-perspective: 150rem;
   position: relative;
-  height: 18rem;
+  height: 20rem;
   color: rgb(4, 11, 150);
+
   &__side {
     height: 100%;
     transition: all 0.8s ease;
@@ -22,6 +23,7 @@
 
     &--front {
       background-color: $color-white;
+      position: relative;
     }
 
     &--back {
@@ -53,4 +55,17 @@
   color: $color-white;
   text-align: center;
   padding-top: 2rem;
+}
+
+.card-title {
+  text-align: center;
+}
+
+svg {
+  fill: $color-yellow;
+  height: 1.7rem;
+  width: 1.7rem;
+  position: absolute;
+  right: 0.4rem;
+  top: 0.3rem;
 }

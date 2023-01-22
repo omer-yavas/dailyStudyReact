@@ -7,6 +7,7 @@ const playersSlice = createSlice({
   initialState: {
     loadingState: false,
     allPlayers: [],
+    detail: dummyPlayers[2],
     filteredPlayers: [],
     favouritePlayerIDs: [],
     modalShow: false,

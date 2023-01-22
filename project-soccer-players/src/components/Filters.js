@@ -114,7 +114,9 @@ const Filters = () => {
         </Form.Select>
         <Form.Label>Rating</Form.Label>
         <div className="row mb-3">
-          {ratingErrorMessage ? <p>{ratingErrorMessage}</p> : null}
+          {ratingErrorMessage ? (
+            <p className="errorMessage">{ratingErrorMessage}</p>
+          ) : null}
           <div className="col-6">
             <Form.Control
               className="invalidInput"
@@ -150,7 +152,9 @@ const Filters = () => {
         </div>
         <Form.Label>Age</Form.Label>
         <div className="row mb-3">
-          {ageErrorMessage ? <p>{ageErrorMessage}</p> : null}
+          {ageErrorMessage ? (
+            <p className="errorMessage">{ageErrorMessage}</p>
+          ) : null}
           <div className="col-6">
             <Form.Control
               className="invalidInput"
@@ -182,7 +186,9 @@ const Filters = () => {
         </div>
         <Form.Label>Height (cm)</Form.Label>
         <div className="row mb-3">
-          {heightErrorMessage ? <p>{heightErrorMessage}</p> : null}
+          {heightErrorMessage ? (
+            <p className="errorMessage">{heightErrorMessage}</p>
+          ) : null}
           <div className="col-6">
             <Form.Control
               className="invalidInput"
@@ -218,7 +224,9 @@ const Filters = () => {
         </div>
         <Form.Label>Weight (kg)</Form.Label>
         <div className="row mb-3">
-          {weightErrorMessage ? <p>{weightErrorMessage}</p> : null}
+          {weightErrorMessage ? (
+            <p className="errorMessage">{weightErrorMessage}</p>
+          ) : null}
           <div className="col-6">
             <Form.Control
               className="invalidInput"
@@ -252,7 +260,7 @@ const Filters = () => {
             />
           </div>
         </div>
-        <div className="mb-3 checkBox_border">
+        <div className="mb-3 injured_checkBox_border">
           <Form.Check id="injuredCheck">
             <Form.Check.Input
               checked={injuredCheck}

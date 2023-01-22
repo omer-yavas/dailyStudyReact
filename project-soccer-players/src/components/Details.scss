@@ -1,0 +1,27 @@
+@import '../styles/constants';
+
+.detailsPage {
+  color: $color-white;
+  padding: 1rem 3rem;
+
+  &_playerName {
+    font-size: 2rem;
+  }
+  &_InfoBox {
+    line-height: 1rem;
+  }
+  &_teamName {
+    text-align: center;
+  }
+}
+
+.statisticsHeader {
+  margin-top: 1.9rem;
+  margin-bottom: 0;
+}
+.statisticsUnderline {
+  width: 75%;
+  height: 2px;
+  background-color: aliceblue;
+  margin-bottom: 1rem;
+}

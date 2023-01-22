@@ -2,7 +2,7 @@ import { getAllPlayers } from './store/players-slice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Filters from './components/Filters';
-import PlayerCard from './components/PlayerCard';
+import Details from './components/Details';
 import GridView from './components/GridView';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -26,6 +26,7 @@ const App = () => {
       <div className="headerBox">
         <Header />
       </div>
+      <Details />
       <div className="row">
         <div className="col-3 filterBox">
           <Filters />

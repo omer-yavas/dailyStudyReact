@@ -1,9 +1,8 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
-import PlayerCard from './PlayerCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { playersActions } from '../store/players-slice';
-import { AiFillStar } from 'react-icons/ai';
+import { BsFillStarFill } from 'react-icons/bs';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -26,8 +25,11 @@ const GridView = ({ products }) => {
       <Row xs={1} s={2} md={3} lg={4} className="g-4">
         {playerArray.map(({ player, statistics }, index) => (
           <Col>
-            <Card className="card">
+            <Card>
               <div className="card__side card__side--front">
+                {favouritePlayerIDs.includes(player.id) ? (
+                  <BsFillStarFill />
+                ) : null}
                 <Card.Img variant="top" src={player.photo} />
                 <Card.Body>
                   <Card.Title>{player.name}</Card.Title>
@@ -37,7 +39,6 @@ const GridView = ({ products }) => {
                     </div>
                     <div className="col-6">
                       <Card.Text className="d-flex justify-content-end align-items-center">
-                        <AiFillStar />
                         Rate:
                         {numberPrecisionHandler(statistics[0].games.rating)}
                       </Card.Text>
