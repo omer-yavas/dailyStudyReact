@@ -1,8 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { playersActions } from '../store/players-slice';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/esm/Button';
 import { Link } from 'react-router-dom';
 import './Details.scss';
 
