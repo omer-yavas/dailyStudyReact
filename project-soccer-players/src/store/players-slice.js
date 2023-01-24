@@ -43,6 +43,9 @@ const playersSlice = createSlice({
       state.allPlayers = [...dummyPlayers];
       state.filteredPlayers = [...dummyPlayers];
     },
+    showDetailOfThisPlayer(state, action) {
+      state.detail = action.payload;
+    },
 
     favouriteSelected(state, action) {
       const newSelect = { ...action.payload };

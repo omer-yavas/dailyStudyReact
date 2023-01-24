@@ -7,14 +7,31 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './GridView.scss';
 
 const GridView = ({ products }) => {
   const dispatch = useDispatch();
   const playerArray = useSelector((state) => state.players.filteredPlayers);
+
+  const navigate = useNavigate();
+
   const favouritePlayerIDs = useSelector(
     (state) => state.players.favouritePlayerIDs
   );
+
+  const detailsButtonClickHandler = (player, statistics) => {
+    dispatch(
+      playersActions.showDetailOfThisPlayer({
+        player,
+        statistics,
+      })
+    );
+
+    navigate('/details');
+  };
 
   const numberPrecisionHandler = (number) => {
     const exactRating = Number(number).toPrecision(2);
@@ -78,7 +95,11 @@ const GridView = ({ products }) => {
                     <Form.Check.Label>Add Favourites</Form.Check.Label>
                   </Form.Check>
                 </div>
-                <Link to="/details">More Details</Link>
+                <Button
+                  onClick={() => detailsButtonClickHandler(player, statistics)}
+                >
+                  More Details
+                </Button>
               </div>
             </Card>
           </Col>
