@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Favourites from './components/Favourites';
 import Button from 'react-bootstrap/Button';
+import { Routes, Route } from 'react-router-dom';
 import { playersActions } from './store/players-slice';
 import './styles/main.scss';
 
@@ -23,28 +24,45 @@ const App = () => {
   //{loading ? <p>Loading...</p> : <p>bbbbbb</p>}
   return (
     <div className="page">
-      <div className="headerBox">
-        <Header />
-      </div>
-      <Details />
-      <div className="row">
-        <div className="col-3 filterBox">
-          <Filters />
-        </div>
-        <div className="col-9">
-          <div className="favouriteListButton">
-            <Button
-              variant="primary"
-              onClick={() => dispatch(playersActions.modalOpen())}
-            >
-              Favourite Players List
-            </Button>
-          </div>
-          <GridView />
-        </div>
-      </div>
-      <Footer />
-      <Favourites />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div>
+              <div className="headerBox">
+                <Header />
+              </div>
+              <div className="row">
+                <div className="col-3 filterBox">
+                  <Filters />
+                </div>
+                <div className="col-9">
+                  <div className="favouriteListButton">
+                    <Button
+                      variant="primary"
+                      onClick={() => dispatch(playersActions.modalOpen())}
+                    >
+                      Favourite Players List
+                    </Button>
+                  </div>
+                  <GridView />
+                </div>
+              </div>
+              <Footer />
+              <Favourites />
+            </div>
+          }
+        ></Route>
+        <Route
+          path="/details"
+          element={
+            <div>
+              <Details />
+              <Footer />
+            </div>
+          }
+        ></Route>
+      </Routes>
     </div>
   );
 };

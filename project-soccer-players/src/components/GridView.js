@@ -6,6 +6,7 @@ import { BsFillStarFill } from 'react-icons/bs';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import { Link } from 'react-router-dom';
 import './GridView.scss';
 
 const GridView = ({ products }) => {
@@ -77,6 +78,7 @@ const GridView = ({ products }) => {
                     <Form.Check.Label>Add Favourites</Form.Check.Label>
                   </Form.Check>
                 </div>
+                <Link to="/details">More Details</Link>
               </div>
             </Card>
           </Col>

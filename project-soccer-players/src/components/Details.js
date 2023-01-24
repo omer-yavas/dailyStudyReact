@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { playersActions } from '../store/players-slice';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/esm/Button';
+import { Link } from 'react-router-dom';
 import './Details.scss';
 
 const Details = () => {
@@ -80,6 +82,8 @@ const Details = () => {
           <p>Commited: {statistics[0].fouls.committed}</p>
         </div>
       </div>
+
+      <Link to="/">Home Page</Link>
     </div>
   );
 };
