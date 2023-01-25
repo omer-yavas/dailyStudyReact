@@ -1,10 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { playersActions } from '../store/players-slice';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/esm/Button';
 import './Details.scss';
 
 const Details = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { player, statistics } = useSelector((state) => state.players.detail);
   return (
     <div className="detailsPage">
@@ -80,7 +82,9 @@ const Details = () => {
         </div>
       </div>
 
-      <Link to="/">Home Page</Link>
+      <Button variant="warning" onClick={() => navigate('/')}>
+        Home Page
+      </Button>
     </div>
   );
 };

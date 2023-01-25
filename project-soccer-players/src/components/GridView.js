@@ -81,19 +81,17 @@ const GridView = ({ products }) => {
                     : 'No data'}
                 </p>
                 <div className="checkBox_border">
-                  <Form.Check id="favouriteCheck">
-                    <Form.Check.Input
-                      checked={favouritePlayerIDs.includes(player.id)}
-                      onChange={() =>
-                        dispatch(
-                          playersActions.favouriteSelected({
-                            id: player.id,
-                          })
-                        )
-                      }
-                    ></Form.Check.Input>
-                    <Form.Check.Label>Add Favourites</Form.Check.Label>
-                  </Form.Check>
+                  <Form.Check.Input
+                    checked={favouritePlayerIDs.includes(player.id)}
+                    onChange={() =>
+                      dispatch(
+                        playersActions.favouriteSelected({
+                          id: player.id,
+                        })
+                      )
+                    }
+                  ></Form.Check.Input>
+                  <p>Add Favourites</p>
                 </div>
                 <Button
                   onClick={() => detailsButtonClickHandler(player, statistics)}

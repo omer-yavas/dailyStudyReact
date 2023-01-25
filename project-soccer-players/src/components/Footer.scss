@@ -6,6 +6,10 @@
   text-align: center;
   margin-top: 2rem;
   position: relative;
+
+  p {
+    padding-top: 1.5rem;
+  }
 }
 
 .progress-bar {
@@ -16,4 +20,5 @@
   height: 2px;
   background: linear-gradient(to right, #5af7dc, #06113a);
   overflow: hidden;
+  margin-bottom: 2rem;
 }

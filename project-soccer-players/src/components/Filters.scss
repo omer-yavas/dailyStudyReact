@@ -1,5 +1,10 @@
 @import '../styles/constants';
-
+.filterBox {
+  padding: 1rem;
+  border-radius: 20px;
+  background-color: rgb(28, 111, 169);
+  color: rgb(255, 255, 255);
+}
 .clearAll {
   font-family: 'Verdana' sans-serif;
   font-size: 1em;
@@ -17,13 +22,6 @@
   border: var(--bs-border-width) solid var(--bs-border-color);
   border-radius: 0.375rem;
   padding: 0.375rem 2.25rem 0.375rem 0.75rem;
-}
-
-.filterBox {
-  padding: 1rem;
-  border-radius: 20px;
-  background-color: rgb(28, 111, 169);
-  color: rgb(255, 255, 255);
 }
 
 .invalidInput:invalid {
