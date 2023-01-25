@@ -1,6 +1,5 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import { playersActions } from '../store/players-slice';
 import { countries, positions } from '../utils/constants';

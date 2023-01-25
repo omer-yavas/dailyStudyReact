@@ -1,11 +1,9 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { playersActions } from '../store/players-slice';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/esm/Button';
 import './Details.scss';
 
 const Details = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { player, statistics } = useSelector((state) => state.players.detail);
   return (

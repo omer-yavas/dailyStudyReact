@@ -1,5 +1,5 @@
 import { getAllPlayers } from './store/players-slice';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect, useLayoutEffect } from 'react';
 import Filters from './components/Filters';
 import Details from './components/Details';
@@ -14,8 +14,8 @@ import './styles/main.scss';
 
 const App = () => {
   const dispatch = useDispatch();
-  const modalShow = useSelector((state) => state.players.modalShow);
-  const loading = useSelector((state) => state.players.loadingState);
+  // const modalShow = useSelector((state) => state.players.modalShow);
+  // const loading = useSelector((state) => state.players.loadingState);
 
   const ScrollUpDeatilsPage = ({ children }) => {
     const location = useLocation();

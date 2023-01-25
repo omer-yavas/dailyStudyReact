@@ -6,9 +6,7 @@ import { BsFillStarFill } from 'react-icons/bs';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-import { redirect } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import './GridView.scss';
 
