@@ -1,3 +1,10 @@
-Project Name : Project-soccer-players
+<b>Project Name</b> : Project-soccer-players
 
-Techologies: React.Js React-Router-Dom Redux Bootstrap SASS
+<b>Technologies</b>: 
+<h3>
+React.Js<br>
+React-Router-Dom<br>
+Redux<br>
+Bootstrap<br>
+SASS<br>
+</h3>
