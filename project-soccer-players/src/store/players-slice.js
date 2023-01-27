@@ -1,13 +1,13 @@
-import axios, { all } from 'axios';
+import axios from 'axios';
 import { createSlice } from '@reduxjs/toolkit';
-import { dummyPlayers } from '../utils/dummyPlayerApi';
+import { API_KEY } from '../utils/constants';
 
 const playersSlice = createSlice({
   name: 'players',
   initialState: {
     loadingState: false,
     allPlayers: [],
-    detail: dummyPlayers[2],
+    detail: [],
     filteredPlayers: [],
     favouritePlayerIDs: [],
     modalShow: false,
@@ -39,9 +39,9 @@ const playersSlice = createSlice({
     setLoadingState(state) {
       state.loadingState = !state.loadingState;
     },
-    fillPlayersArray(state) {
-      state.allPlayers = [...dummyPlayers];
-      state.filteredPlayers = [...dummyPlayers];
+    fillPlayersArray(state, action) {
+      state.allPlayers = [...action.payload];
+      state.filteredPlayers = [...action.payload];
     },
     showDetailOfThisPlayer(state, action) {
       state.detail = action.payload;
@@ -164,11 +164,13 @@ export const getAllPlayers = () => {
     );
 
     const sendRequest = async () => {
+      console.log(API_KEY);
       const options = {
         method: 'GET',
+        url: 'https://api-football-v1.p.rapidapi.com/v3/players',
+        params: { league: '78', season: '2020' },
         headers: {
-          'X-RapidAPI-Key':
-            '62ec314e02msha83008fa1cbc55ep1d9675jsn3246344f664a',
+          'X-RapidAPI-Key': `${API_KEY}`,
           'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
         },
       };
@@ -176,15 +178,16 @@ export const getAllPlayers = () => {
       axios
         .request(options)
         .then(function (response) {
-          console.log(response.data);
+          console.log(response.data.response);
+          dispatch(playersActions.fillPlayersArray(response.data.response));
         })
         .catch(function (error) {
           console.error(error);
         });
     };
 
-    //await sendRequest();
-    dispatch(playersActions.fillPlayersArray());
+    await sendRequest();
+
     dispatch(playersActions.setLoadingState());
   };
 };

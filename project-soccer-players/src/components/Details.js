@@ -10,7 +10,7 @@ const Details = () => {
     <div className="detailsPage">
       <div className="row">
         <div className="col-2">
-          <img src={player.photo} />
+          <img src={player.photo} alt="player" />
         </div>
         <div className="col-8">
           {' '}
@@ -29,7 +29,7 @@ const Details = () => {
           </div>
         </div>
         <div className="col-2">
-          <img src={statistics[0].team.logo} />{' '}
+          <img src={statistics[0].team.logo} alt="team logo" />{' '}
           <p className="detailsPage_teamName">
             Team: {statistics[0].team.name}
           </p>

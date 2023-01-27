@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import './GridView.scss';
 
-const GridView = ({ products }) => {
+const GridView = () => {
   const dispatch = useDispatch();
   const playerArray = useSelector((state) => state.players.filteredPlayers);
 
@@ -39,8 +39,8 @@ const GridView = ({ products }) => {
   if (playerArray.length > 0) {
     return (
       <Row xs={1} s={2} md={3} lg={4} className="g-4">
-        {playerArray.map(({ player, statistics }, index) => (
-          <Col>
+        {playerArray.map(({ player, statistics }) => (
+          <Col key={player.id}>
             <Card>
               <div className="card__side card__side--front">
                 {favouritePlayerIDs.includes(player.id) ? (
