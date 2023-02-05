@@ -6,6 +6,8 @@ import Details from './components/Details';
 import GridView from './components/GridView';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Login from './components/Login';
+import Signup from './components/Signup';
 import Favourites from './components/Favourites';
 import Button from 'react-bootstrap/Button';
 import { Routes, Route, useLocation } from 'react-router-dom';
@@ -71,6 +73,8 @@ const App = () => {
               </div>
             }
           ></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/signup" element={<Signup />}></Route>
         </Routes>
       </ScrollUpDeatilsPage>
     </div>

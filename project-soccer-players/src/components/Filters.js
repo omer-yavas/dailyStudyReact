@@ -56,14 +56,14 @@ const Filters = () => {
   };
 
   return (
-    <div className="filterBox">
+    <div className="filters">
       <Form onSubmit={formSubmissionHandler}>
-        <div className="mt-3 d-flex justify-content-end ">
+        <div className="mt-1 d-flex justify-content-end ">
           <button className="clearAll" onClick={clearFiltersHandler}>
             Clear Filters
           </button>
         </div>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Group controlId="exampleForm.ControlInput1">
           <Form.Label>Name</Form.Label>
           <div className="row">
             <div className="col-12">
@@ -85,7 +85,6 @@ const Filters = () => {
 
         <Form.Label>Position</Form.Label>
         <Form.Select
-          className="mb-3"
           value={position}
           onChange={(event) =>
             dispatch(
@@ -99,7 +98,6 @@ const Filters = () => {
         </Form.Select>
         <Form.Label>Nationality</Form.Label>
         <Form.Select
-          className="mb-3"
           value={nationality}
           onChange={(event) =>
             dispatch(
@@ -112,7 +110,7 @@ const Filters = () => {
           })}
         </Form.Select>
         <Form.Label>Rating</Form.Label>
-        <div className="row mb-3">
+        <div className="row">
           {ratingErrorMessage ? (
             <p className="errorMessage">{ratingErrorMessage}</p>
           ) : null}
@@ -150,7 +148,7 @@ const Filters = () => {
           </div>
         </div>
         <Form.Label>Age</Form.Label>
-        <div className="row mb-3">
+        <div className="row ">
           {ageErrorMessage ? (
             <p className="errorMessage">{ageErrorMessage}</p>
           ) : null}
@@ -184,7 +182,7 @@ const Filters = () => {
           </div>
         </div>
         <Form.Label>Height (cm)</Form.Label>
-        <div className="row mb-3">
+        <div className="row ">
           {heightErrorMessage ? (
             <p className="errorMessage">{heightErrorMessage}</p>
           ) : null}
@@ -222,7 +220,7 @@ const Filters = () => {
           </div>
         </div>
         <Form.Label>Weight (kg)</Form.Label>
-        <div className="row mb-3">
+        <div className="row">
           {weightErrorMessage ? (
             <p className="errorMessage">{weightErrorMessage}</p>
           ) : null}
@@ -269,7 +267,7 @@ const Filters = () => {
                 )
               }
             ></Form.Check.Input>
-            <Form.Check.Label>Just non-injured players</Form.Check.Label>
+            <Form.Check.Label>Non-injured players</Form.Check.Label>
           </Form.Check>
         </div>
       </Form>

@@ -11,5 +11,7 @@
 
 .filterBox {
   position: sticky;
+  max-height: 100vh;
   top: 1rem;
+  overflow-y: auto;
 }
