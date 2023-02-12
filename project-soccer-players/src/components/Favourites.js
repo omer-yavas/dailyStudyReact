@@ -4,12 +4,15 @@ import Table from 'react-bootstrap/Table';
 import { useSelector, useDispatch } from 'react-redux';
 import { playersActions } from '../store/players-slice';
 import Button from 'react-bootstrap/esm/Button';
+import { NavLink } from 'react-router-dom';
 
 const Favourites = () => {
   const dispatch = useDispatch();
   const favouritePlayerIDs = useSelector(
     (state) => state.players.favouritePlayerIDs
   );
+
+  const userLoggedIn = useSelector((state) => state.auth.userLoggedIn);
 
   const modalShow = useSelector((state) => state.players.modalShow);
 
@@ -32,7 +35,12 @@ const Favourites = () => {
       <Modal.Header closeButton>
         <Modal.Title>Favourite Players List</Modal.Title>
       </Modal.Header>
-      {favouritePlayers.length > 0 ? (
+      {!userLoggedIn ? (
+        <div className='modal_loginRouter'>
+          <p>You must login to see favourite players!</p>
+          <NavLink to="/login">Login</NavLink>
+        </div>
+      ) : favouritePlayers.length > 0 ? (
         <div>
           <Table striped bordered hover responsive>
             <thead>
@@ -44,7 +52,7 @@ const Favourites = () => {
                 <th>Rate</th>
                 <th>Height</th>
                 <th>Weight</th>
-                <th>Injurt Status</th>
+                <th>Injury Status</th>
               </tr>
             </thead>
             <tbody>
@@ -68,19 +76,17 @@ const Favourites = () => {
               ))}
             </tbody>
           </Table>
+          <Button
+            variant="danger"
+            className="clearButton"
+            onClick={() => dispatch(playersActions.clearFavourites())}
+          >
+            Clear Favourites List
+          </Button>
         </div>
       ) : (
         <p className="noFavourite">"No Favourite Player Yet!"</p>
       )}
-      {favouritePlayerIDs.length > 0 ? (
-        <Button
-          variant="danger"
-          className="clearButton"
-          onClick={() => dispatch(playersActions.clearFavourites())}
-        >
-          Clear Favourites List
-        </Button>
-      ) : null}
     </Modal>
   );
 };

@@ -66,7 +66,7 @@ const playersSlice = createSlice({
 
       if (newFilterObject.searchValue !== '') {
         filteredValue = filteredValue.filter(({ player }) =>
-          player.name.includes(newFilterObject.searchValue)
+          player.name.toLowerCase().includes(newFilterObject.searchValue)
         );
       }
 
