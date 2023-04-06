@@ -13,9 +13,11 @@ const Form = (props) => {
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=d1e4465607eca8ceca64ca98d69878b2`
     )
       .then((response) => {
-        response.json();
+        return response.json();
       })
-      .then((data) => props.getWeather(data))
+      .then((data) => {
+        props.getWeather(data);
+      })
       .catch((error) => {
         props.getWeather(error);
       });

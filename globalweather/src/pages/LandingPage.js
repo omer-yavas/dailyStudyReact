@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 const LandingPage = () => {
   const [weather, setWeather] = useState('');
-
   const getWeather = (currentWeather) => {
     setWeather(currentWeather);
   };
