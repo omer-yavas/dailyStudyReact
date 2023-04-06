@@ -24,7 +24,7 @@ const Form = (props) => {
   };
 
   return (
-    <div>
+    <div className="formbox">
       <form onSubmit={handleSubmit}>
         <label>
           City Name:

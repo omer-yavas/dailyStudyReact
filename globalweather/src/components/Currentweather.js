@@ -7,10 +7,10 @@ const Currentweather = (props) => {
   }
 
   return (
-    <div>
+    <div className="weatherbox">
       {cityWeather !== null ? (
         cityWeather.message ? (
-          <p>{cityWeather.message}</p>
+          <p className="notfound">{cityWeather.message}!</p>
         ) : (
           <div>
             <p>Temperature:{cityWeather.main.temp}</p>
