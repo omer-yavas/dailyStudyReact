@@ -1,20 +1,23 @@
 const Currentweather = (props) => {
-  if (props.weather == '') {
-    return <div>Search Your city temp</div>;
-  }
-
-  const cityWeather = { ...props.weather };
-
-  if (cityWeather.message == 'city not found') {
-    return <div>City not found</div>;
+  let cityWeather = null;
+  if (props.weather instanceof Error) {
+    return <p>An Error Happened!</p>;
+  } else {
+    cityWeather = { ...props.weather };
   }
 
   return (
     <div>
-      <p>Temperature:{cityWeather.main.temp}</p>
-      <p>Humidity:{cityWeather.main.humidity}</p>
-      <p>Windspeed:{cityWeather.wind.speed}</p>
-      <p>weather description :{cityWeather.weather[0].description}</p>
+      {!cityWeather.message ? (
+        <div>
+          <p>Temperature:{cityWeather.main.temp}</p>
+          <p>Humidity:{cityWeather.main.humidity}</p>
+          <p>Windspeed:{cityWeather.wind.speed}</p>
+          <p>weather description :{cityWeather.weather[0].description}</p>
+        </div>
+      ) : (
+        <p>{cityWeather.message}</p>
+      )}
     </div>
   );
 };

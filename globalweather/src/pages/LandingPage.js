@@ -6,7 +6,6 @@ const LandingPage = () => {
   const [weather, setWeather] = useState('');
 
   const getWeather = (currentWeather) => {
-    console.log(currentWeather);
     setWeather(currentWeather);
   };
   return (
