@@ -6,11 +6,17 @@
   border-radius: 1rem;
 }
 
+.btn {
+  margin-left: 1.4rem;
+}
+
 .weatherbox {
   min-height: 30vh;
   background-color: aquamarine;
   border-radius: 1rem;
-  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
 .notfound {
