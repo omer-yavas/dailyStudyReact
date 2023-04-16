@@ -1,0 +1,27 @@
+{
+  "masa1": {
+    "müşteri1": { "çorbaA": "fiyatı", "köfteA": "fiyatı" }
+  },
+  "tatlılar": {
+    "sütlaç": { "fiyat": 500, "foto": "abc.jpg", "opsiyon": "tarçınlı" }
+  },
+  "kullanıcılar": [
+    {
+      "kullaniciAdi": "ahmet",
+      "sifre": "12345",
+      "rol": "kullanıcı"
+    },
+    {
+      "kullaniciAdi": "mehmet",
+      "sifre": "12345",
+      "rol": "admin"
+    },
+    { "bahçe": 5, "salon": 10 },
+    { "personel_1": "Hakan", "personel_2": "İsmail" },
+    [
+      { "min": 1, "max": 10, "indirim": "10%" },
+      { "min": 11, "max": 20, "indirim": "15%" }
+    ]
+  ],
+  "Cari hesabı olan müşteriler": { "Ahmet": 300, "Mert": 200 }
+}

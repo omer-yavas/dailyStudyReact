@@ -1,0 +1,50 @@
+.header {
+  display: flex;
+  justify-content: flex-end;
+}
+.header_logout {
+  cursor: pointer;
+  margin: auto 1rem;
+}
+.navbox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.loginBox {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginform {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.definePageMasterButtons {
+  display: flex;
+  gap: 3rem;
+}
+.defineSectionTableAddButton {
+  text-align: center;
+}
+
+.addSectionTable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.addSectionTableButtons {
+  display: flex;
+  align-items: flex-end;
+  gap: 2rem;
+}
