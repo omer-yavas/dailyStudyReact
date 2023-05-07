@@ -1,9 +1,12 @@
+import DeleteResetUser from '../components/user/DeleteResetUser';
+import AddUser from '../components/user/AddUser';
+
 const SystemAdministrationPage = () => {
   return (
     <div>
-      <h3>Kullanıcı Tanımlama/Silme </h3>
-      <div>Kullanıcı listesi componenti</div>
-      <div>Kullanıcı tanımla/sil komponenti</div>
+      <h3 className="page_header">Kullanıcı Hesap Yönetim Sayfası</h3>
+      <DeleteResetUser />
+      <AddUser />
     </div>
   );
 };

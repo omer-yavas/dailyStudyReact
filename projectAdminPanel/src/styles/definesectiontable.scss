@@ -1,0 +1,28 @@
+.defineSectionTableAddButton {
+  text-align: center;
+}
+
+.addSectionTable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.addSectionTableButtons {
+  display: flex;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+@media (max-width: 576px) {
+  .addSectionTable {
+    display: block;
+  }
+
+  .addSectionTableButtons {
+    margin-top: 2rem;
+    gap: 2rem;
+    justify-content: center;
+  }
+}

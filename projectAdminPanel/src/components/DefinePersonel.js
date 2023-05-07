@@ -29,11 +29,12 @@ const DefinePersonel = () => {
 
   return (
     <div>
+      <h3 className="page_header">Personel Düzenle</h3>
       <Table>
         <thead>
           <tr>
             <th>#</th>
-            <th>Personel Adı</th>
+            <th>"Personel Adı"</th>
           </tr>
         </thead>
         <tbody>

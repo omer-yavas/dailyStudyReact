@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   sectionTableList: [
-    { sectionName: 'salon', numberOfTables: 10 },
-    { sectionName: 'bahçe', numberOfTables: 7 },
+    { sectionName: 'Salon', numberOfTables: 10 },
+    { sectionName: 'Bahçe', numberOfTables: 7 },
   ],
 };
 

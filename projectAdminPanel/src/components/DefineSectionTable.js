@@ -36,6 +36,7 @@ const DefineSectionTable = () => {
 
   return (
     <div>
+      <h3 className="page_header">Bölüm-Masa Düzenle</h3>
       <Table>
         <thead>
           <tr>

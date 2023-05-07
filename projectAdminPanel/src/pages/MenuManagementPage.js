@@ -1,12 +1,12 @@
-import SeeMenu from '../components/SeeMenu';
-import EditMenu from '../components/EditMenu';
+import SeeItems from '../components/menu/SeeItems';
+import EditItems from '../components/menu/EditItems';
 
 const MenuManagementPage = () => {
   return (
     <div>
       <h3>MenuManagementPage</h3>
-      <SeeMenu />
-      <EditMenu />
+      <SeeItems />
+      <EditItems />
     </div>
   );
 };
