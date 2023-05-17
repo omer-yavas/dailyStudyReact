@@ -1,14 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   //user: null,
-  userList: [{ username: 'a', password: 'b', role: 'admin' }],
-  authenticated: null,
+  userList: [{ username: "k", password: "k", role: "admin" }],
+  authenticated: false,
   validUserName: null,
 };
 
 const UserSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     addUser: (state, action) => {
@@ -24,17 +24,17 @@ const UserSlice = createSlice({
       state.userList[index] = { ...body };
     },
     logoutUser: (state, action) => {
-      state.authenticated = null;
+      state.authenticated = false;
       state.validUserName = null;
     },
     checkLoginIsValid: (state, action) => {
       const { username, password } = { ...action.payload };
-      state.validUserName = username;
-      if (username === state.userList[0].username) {
+      //state.validUserName = username;
+      if (
+        username === state.userList[0].username &&
+        password === state.userList[0].password
+      ) {
         state.authenticated = true;
-        state.validUserName = username;
-      } else if (username !== state.userList[0].username) {
-        state.authenticated = false;
       }
     },
   },

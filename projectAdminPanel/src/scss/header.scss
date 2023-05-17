@@ -1,0 +1,19 @@
+.header {
+  background-color: $blaze-golden;
+  color: $blaze-dark2;
+}
+
+.header_toggler {
+  color: $blaze-dark2;
+}
+
+.breadcrumbHeader {
+  color: $blaze-dark2 !important;
+  font-size: 30px;
+}
+
+.customized_header_brand {
+  svg {
+    width: 100px;
+  }
+}

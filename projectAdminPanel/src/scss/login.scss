@@ -1,0 +1,33 @@
+.main_background {
+  background: linear-gradient(60deg, rgb(0, 0, 0), $blaze-golden);
+}
+//#ffe01a
+.login_logo {
+  width: 100%; /* Logo bileşenini parentın genişliğine sığacak şekilde ölçeklendirme */
+  height: auto; /* Yüksekliği otomatik olarak ayarlanır */
+}
+
+@media (max-width: 576px) {
+  .logo_card {
+    display: none;
+  }
+}
+
+@media (min-width: 576px) {
+  .xsmallscreenlogo {
+    display: none;
+  }
+}
+
+.xsmallscreen_loginheader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.xsmallscreenlogo {
+  width: 80px;
+  height: 80px;
+  background-color: black;
+  border-radius: 6px;
+}

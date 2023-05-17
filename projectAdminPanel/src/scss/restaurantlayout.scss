@@ -1,0 +1,17 @@
+.sectionbox {
+  width: 155px;
+  height: 155px;
+  background-color: $blaze-golden;
+  color: $blaze-dark2;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+}
+
+.sectionbox_toolbox {
+  display: flex;
+  gap: 2rem;
+}

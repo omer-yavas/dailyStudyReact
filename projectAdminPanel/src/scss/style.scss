@@ -1,0 +1,45 @@
+// If you want to override variables do it here
+@import "variables";
+
+$enable-ltr: true;
+$enable-rtl: true;
+
+// Import CoreUI for React components library
+@import "@coreui/coreui/scss/coreui";
+
+// Import Chart.js custom tooltips styles
+@import "@coreui/chartjs/scss/coreui-chartjs";
+
+@import "layout";
+@import "example";
+
+// If you want to add custom CSS you can put it here.
+@import "custom";
+
+@import "./personel.scss";
+@import "./login.scss";
+@import "./restaurantlayout.scss";
+@import "./sidebar.scss";
+@import "./header.scss";
+@import "./menu.scss";
+
+.black_background {
+  background-color: black;
+}
+
+.app_content_box {
+  background-color: $blaze-light1;
+}
+
+/* WebKit (Safari, Chrome) */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $blaze-9;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $blaze-dark2;
+}
