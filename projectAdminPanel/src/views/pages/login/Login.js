@@ -59,7 +59,7 @@ const Login = () => {
                     </div>
 
                     <p className="text-medium-emphasis">
-                      Hesabınıza Giriş Yapın!
+                      user : k , password: k
                     </p>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
