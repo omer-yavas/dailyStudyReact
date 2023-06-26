@@ -1,0 +1,15 @@
+.table {
+  border-width: 2px;
+  border-style: solid;
+  color: $blaze-dark2;
+  border-color: $blaze-dark2;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.restaurant_layout_section {
+  margin-bottom: 2rem;
+}

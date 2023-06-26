@@ -1,4 +1,7 @@
 import * as React from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 //grid için
 import { alpha, styled } from "@mui/material/styles";
 import { DataGrid, gridClasses, GridToolbar } from "@mui/x-data-grid";
@@ -33,7 +36,7 @@ const theme = createTheme({
 
 const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
   [`& .${gridClasses.row}.even`]: {
-    backgroundColor: alpha(theme.palette.success.main, 0.3),
+    backgroundColor: alpha("#796a51", 0.3),
     "&:hover, &.Mui-hovered": {
       backgroundColor: alpha(theme.palette.primary.main, ODD_OPACITY),
       "@media (hover: none)": {
@@ -83,13 +86,24 @@ function CustomToolbar() {
 }
 
 const UserManagement = () => {
-  const [addNewPersonel, setAddNewPersonel] = React.useState(false);
+  const [addNewUser, setAddNewUser] = React.useState(false);
   const columns = [
-    { field: "username", headerName: "Kullanıcı Adı", minWidth: 170 },
-    { field: "userRole", headerName: "Rolü", minWidth: 150 },
+    {
+      field: "username",
+      headerName: "Kullanıcı Adı",
+      headerClassName: "column-header-style",
+      minWidth: 170,
+    },
+    {
+      field: "userRole",
+      headerName: "Rolü",
+      headerClassName: "column-header-style",
+      minWidth: 150,
+    },
     {
       field: "edit",
       headerName: "Düzenle",
+      headerClassName: "column-header-style",
       minWidth: 60,
       renderCell: (params) => {
         return (
@@ -104,6 +118,7 @@ const UserManagement = () => {
     {
       field: "delete",
       headerName: "Sil",
+      headerClassName: "column-header-style",
       minWidth: 50,
       renderCell: (params) => {
         return (
@@ -151,20 +166,70 @@ const UserManagement = () => {
   ];
   return (
     <div>
-      <div className="flexbox margintop justifycenter gap2 ">
-        <div>
-          <ThemeProvider theme={theme}>
-            <Button
-              onClick={() => setAddNewPersonel(!addNewPersonel)}
-              variant="contained"
-            >
-              Kullanıcı Ekle
-            </Button>
-          </ThemeProvider>
-        </div>
+      <div className="flexbox margintop justifycenter gap2 addboxborder">
+        {!addNewUser ? (
+          <div>
+            <ThemeProvider theme={theme}>
+              <Button
+                onClick={() => setAddNewUser(!addNewUser)}
+                variant="contained"
+              >
+                Yeni Kullanıcı Ekle
+              </Button>
+            </ThemeProvider>
+          </div>
+        ) : (
+          <Row>
+            <Col xs={8}>
+              <Row>
+                <Col xs={8} sm={4} className="mb-1">
+                  <Input placeholder="Kullanıcı Adı" />
+                </Col>
+                <Col xs={8} sm={4} className="mt-1">
+                  <select name="userRole" id="user_role">
+                    <option value="">Rol seçiniz</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                  </select>
+                </Col>
+                <Col xs={8} sm={4} className="mb-1">
+                  <Input placeholder="Şifre" />
+                </Col>
+              </Row>
+            </Col>
+            <Col xs={4}>
+              <ThemeProvider theme={theme}>
+                <Row>
+                  <Col xs={8} sm={6} className="mb-1 mt-1">
+                    <Button variant="contained">Ekle</Button>
+                  </Col>
+                  <Col xs={8} sm={6} className="mb-1 mt-1">
+                    <Button
+                      onClick={() => setAddNewUser(!addNewUser)}
+                      variant="contained"
+                    >
+                      İptal
+                    </Button>
+                  </Col>
+                </Row>
+              </ThemeProvider>
+            </Col>
+          </Row>
+        )}
       </div>
       <div>
         <StripedDataGrid
+          sx={{
+            ".MuiDataGrid-cell": {
+              border: "1px solid #000",
+            },
+            ".MuiDataGrid-columnHeader": {
+              border: "1px solid #000",
+            },
+            ".MuiDataGrid-main": {
+              border: "1px solid #000",
+            },
+          }}
           rows={rows}
           columns={columns}
           getRowClassName={(params) =>

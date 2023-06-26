@@ -15,13 +15,17 @@ $enable-rtl: true;
 
 // If you want to add custom CSS you can put it here.
 @import "custom";
-
+@import "./homepage.scss";
 @import "./personel.scss";
 @import "./login.scss";
 @import "./restaurantlayout.scss";
 @import "./sidebar.scss";
 @import "./header.scss";
 @import "./menu.scss";
+@import "./receipt.scss";
+@import "./tableLayout.scss";
+@import "./spinner.scss";
+@import "./order.scss";
 
 .black_background {
   background-color: black;
@@ -42,4 +46,20 @@ $enable-rtl: true;
 
 ::-webkit-scrollbar-thumb {
   background-color: $blaze-dark2;
+}
+
+.column-header-style {
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.horizontal-line {
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+  margin: 1rem auto;
+}
+
+p {
+  margin-bottom: 0;
 }

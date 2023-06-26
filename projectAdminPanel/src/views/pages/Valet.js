@@ -31,7 +31,7 @@ const theme = createTheme({
 
 const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
   [`& .${gridClasses.row}.even`]: {
-    backgroundColor: alpha(theme.palette.success.main, 0.3),
+    backgroundColor: alpha("#796a51", 0.3),
     "&:hover, &.Mui-hovered": {
       backgroundColor: alpha(theme.palette.primary.main, ODD_OPACITY),
       "@media (hover: none)": {
@@ -82,10 +82,30 @@ function CustomToolbar() {
 
 const Valet = () => {
   const columns = [
-    { field: "vehicle", headerName: "Plaka", minWidth: 150 },
-    { field: "customer", headerName: "Müşteri", minWidth: 180 },
-    { field: "table", headerName: "Masa No", minWidth: 110 },
-    { field: "time", headerName: "Çağırılma Zamanı", minWidth: 170 },
+    {
+      field: "vehicle",
+      headerName: "Plaka",
+      headerClassName: "column-header-style",
+      minWidth: 150,
+    },
+    {
+      field: "customer",
+      headerName: "Müşteri",
+      headerClassName: "column-header-style",
+      minWidth: 180,
+    },
+    {
+      field: "table",
+      headerName: "Masa No",
+      headerClassName: "column-header-style",
+      minWidth: 110,
+    },
+    {
+      field: "time",
+      headerName: "Çağırılma Zamanı",
+      headerClassName: "column-header-style",
+      minWidth: 170,
+    },
   ];
 
   const rows = [
@@ -115,6 +135,17 @@ const Valet = () => {
     <div>
       <div>
         <StripedDataGrid
+          sx={{
+            ".MuiDataGrid-cell": {
+              border: "1px solid #000",
+            },
+            ".MuiDataGrid-columnHeader": {
+              border: "1px solid #000",
+            },
+            ".MuiDataGrid-main": {
+              border: "1px solid #000",
+            },
+          }}
           rows={rows}
           columns={columns}
           getRowClassName={(params) =>

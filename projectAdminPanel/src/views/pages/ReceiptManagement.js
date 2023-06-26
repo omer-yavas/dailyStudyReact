@@ -1,4 +1,8 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Modal from "react-bootstrap/Modal";
+import Table from "react-bootstrap/Table";
 //grid için
 import { alpha, styled } from "@mui/material/styles";
 import { DataGrid, gridClasses, GridToolbar } from "@mui/x-data-grid";
@@ -33,7 +37,7 @@ const theme = createTheme({
 
 const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
   [`& .${gridClasses.row}.even`]: {
-    backgroundColor: alpha(theme.palette.success.main, 0.3),
+    backgroundColor: alpha("#796a51", 0.3),
     "&:hover, &.Mui-hovered": {
       backgroundColor: alpha(theme.palette.primary.main, ODD_OPACITY),
       "@media (hover: none)": {
@@ -90,18 +94,50 @@ function CustomToolbar() {
 }
 
 const ReceiptManagement = () => {
-  const [addNewPersonel, setAddNewPersonel] = React.useState(false);
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [showSharePayment, setShowSharePayment] = useState(false);
+
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
+
+  const handleClickSharePayment = () => {
+    setShowModal(false);
+    setShowSharePayment(true);
+  };
+
+  const handleCancelAllProcess = () => {
+    setShowModal(false);
+    setShowSharePayment(false);
+  };
+
   const columns = [
-    { field: "receiptID", headerName: "Adisyon", minWidth: 65 },
-    { field: "tableID", headerName: "Masa", minWidth: 100 },
-    { field: "customerID", headerName: "Müşteri", minWidth: 170 },
+    {
+      field: "receiptID",
+      headerName: "Adisyon",
+      headerClassName: "column-header-style",
+      minWidth: 65,
+    },
+    {
+      field: "tableID",
+      headerName: "Masa",
+      headerClassName: "column-header-style",
+      minWidth: 100,
+    },
+    {
+      field: "customerID",
+      headerName: "Müşteri",
+      headerClassName: "column-header-style",
+      minWidth: 170,
+    },
     {
       field: "showReceipt",
       headerName: "Görüntüle",
+      headerClassName: "column-header-style",
       minWidth: 70,
       renderCell: (params) => {
         return (
-          <div>
+          <div onClick={() => navigate("/receiptPayment")}>
             <ReceiptLongOutlinedIcon />
           </div>
         );
@@ -112,6 +148,7 @@ const ReceiptManagement = () => {
     {
       field: "writeReceipt",
       headerName: "Yazdır",
+      headerClassName: "column-header-style",
       minWidth: 70,
       renderCell: (params) => {
         return (
@@ -125,12 +162,13 @@ const ReceiptManagement = () => {
     },
     {
       field: "addReceipt",
-      headerName: "Diğerlerini Ekle",
+      headerName: "Birleştir",
+      headerClassName: "column-header-style",
       minWidth: 120,
       renderCell: (params) => {
         return (
           <div>
-            <Button variant="contained" onClick={() => freeClick()}>
+            <Button variant="contained" onClick={() => setShowModal(true)}>
               <AddOutlinedIcon />
             </Button>
           </div>
@@ -139,9 +177,24 @@ const ReceiptManagement = () => {
       sortable: false,
       filterable: false,
     },
-    { field: "receiptPrice", headerName: "Adisyon Tutarı", minWidth: 120 },
-    { field: "allPrice", headerName: "Toplam Tutar", minWidth: 110 },
-    { field: "paymentStatus", headerName: "Ödeme Al", minWidth: 170 },
+    {
+      field: "receiptPrice",
+      headerName: "Adisyon Tutarı",
+      headerClassName: "column-header-style",
+      minWidth: 120,
+    },
+    {
+      field: "allPrice",
+      headerName: "Toplam Tutar",
+      headerClassName: "column-header-style",
+      minWidth: 110,
+    },
+    {
+      field: "paymentStatus",
+      headerName: "Ödeme Al",
+      headerClassName: "column-header-style",
+      minWidth: 170,
+    },
   ];
 
   const rows = [
@@ -188,27 +241,127 @@ const ReceiptManagement = () => {
   ];
   return (
     <div>
-      <div>
-        <StripedDataGrid
-          rows={rows}
-          columns={columns}
-          getRowClassName={(params) =>
-            params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd"
-          }
-          localeText={{
-            toolbarColumns: "Tablo Başlıkları",
-            toolbarFilters: "Filtrele",
-            toolbarDensity: "Satır Aralığı",
-            toolbarDensityCompact: "Dar",
-            toolbarDensityStandard: "Orta",
-            toolbarDensityComfortable: "Geniş",
-            toolbarExport: "Yazdır",
-            toolbarExportCSV: "CSV olarak İndir",
-            toolbarExportPrint: "Yazdır",
-          }}
-          slots={{ toolbar: CustomToolbar }}
-        />
-      </div>
+      <StripedDataGrid
+        sx={{
+          ".MuiDataGrid-cell": {
+            border: "1px solid #000",
+          },
+          ".MuiDataGrid-columnHeader": {
+            border: "1px solid #000",
+          },
+          ".MuiDataGrid-main": {
+            border: "1px solid #000",
+          },
+        }}
+        rows={rows}
+        columns={columns}
+        getRowClassName={(params) =>
+          params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd"
+        }
+        localeText={{
+          toolbarColumns: "Tablo Başlıkları",
+          toolbarFilters: "Filtrele",
+          toolbarDensity: "Satır Aralığı",
+          toolbarDensityCompact: "Dar",
+          toolbarDensityStandard: "Orta",
+          toolbarDensityComfortable: "Geniş",
+          toolbarExport: "Yazdır",
+          toolbarExportCSV: "CSV olarak İndir",
+          toolbarExportPrint: "Yazdır",
+        }}
+        slots={{ toolbar: CustomToolbar }}
+      />
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Ödeme Ekleme / Birleştirme </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h4>Müşteri : Mehmet Bey</h4>
+          <fieldset>
+            <legend>Masadaki Diğer Adisyonları Ekle</legend>
+
+            <div>
+              <input type="checkbox" id="scales" name="scales" />
+              <label for="scales">Ahmet Bey</label>
+            </div>
+
+            <div>
+              <input type="checkbox" id="horns" name="horns" />
+              <label for="horns">Harun Bey</label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend> Diğer Masaları Ekle</legend>
+
+            <label for="pet-select">Masa Seçiniz:</label>
+
+            <select id="pet-select">
+              <option value="">--Lütfen Masa Seçiniz--</option>
+              <option value="dog">Salon-01</option>
+              <option value="cat">Salon-01</option>
+              <option value="hamster">Salon-01</option>
+              <option value="parrot">Salon-01</option>
+              <option value="spider">Salon-01</option>
+              <option value="goldfish">Salon-01</option>
+            </select>
+            <div>
+              <p>Eklenen Masalar</p>
+              <div></div>
+            </div>
+          </fieldset>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button>Tek Başına Öde</Button>
+          <Button onClick={handleClickSharePayment}>Paylaştırarak Öde</Button>
+          <Button onClick={handleCancelAllProcess}>İptal</Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal show={showSharePayment} onHide={() => setShowSharePayment(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Paylaşımlı Ödeme Planı </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Toplam Ödeme Tutarı: 2000 TL</p>
+          <Button>Eşit Paylaştır</Button>
+
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Müşteri</th>
+                <th>Ödenecek Tutar</th>
+                <th>Nakit</th>
+                <th>Kredi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mark</td>
+                <td>200</td>
+                <td>200</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Jacob</td>
+                <td>300</td>
+                <td>300</td>
+                <td>{null}</td>
+              </tr>
+              <tr>
+                <td>Larry</td>
+                <td>800</td>
+                <td>400</td>
+                <td>400</td>
+              </tr>
+            </tbody>
+          </Table>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button onClick={() => {}}>Ödeme Planını Onayla</Button>
+          <Button onClick={handleCancelAllProcess}>İptal</Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

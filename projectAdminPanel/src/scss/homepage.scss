@@ -1,0 +1,54 @@
+.homepage_container {
+  height: calc(100vh - 75px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.statistics_section {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 1.7rem;
+  margin-bottom: 1rem;
+}
+
+.statistics_card {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 2rem;
+  border-radius: 15px;
+  background-color: $blaze-dark2;
+  color: $blaze-lightest;
+}
+
+.statistics_card_title {
+  text-align: center;
+  font-size: 2.8rem;
+}
+
+.statistics_card_text {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.card_section {
+  display: flex;
+  gap: 1.3rem;
+  justify-content: center;
+}
+
+.nav_card {
+  background-color: $blaze-dark2;
+  color: $blaze-lightest;
+  text-align: center;
+  padding-left: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 2rem;
+  border-radius: 15px;
+  cursor: pointer;
+}

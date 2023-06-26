@@ -33,9 +33,11 @@ const theme = createTheme({
   },
 });
 
+console.log(theme);
+
 const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
   [`& .${gridClasses.row}.even`]: {
-    backgroundColor: alpha(theme.palette.success.main, 0.3),
+    backgroundColor: alpha("#796a51", 0.3),
     "&:hover, &.Mui-hovered": {
       backgroundColor: alpha(theme.palette.primary.main, ODD_OPACITY),
       "@media (hover: none)": {
@@ -87,11 +89,22 @@ function CustomToolbar() {
 const Personel = () => {
   const [addNewPersonel, setAddNewPersonel] = React.useState(false);
   const columns = [
-    { field: "personelname", headerName: "İsim", minWidth: 250 },
-    { field: "mission", headerName: "Görevi", minWidth: 180 },
+    {
+      field: "personelname",
+      headerName: "İsim",
+      headerClassName: "column-header-style",
+      minWidth: 250,
+    },
+    {
+      field: "mission",
+      headerName: "Görevi",
+      headerClassName: "column-header-style",
+      minWidth: 180,
+    },
     {
       field: "delete",
       headerName: "Sil",
+      headerClassName: "column-header-style",
       minWidth: 50,
       renderCell: (params) => {
         return (
@@ -166,10 +179,10 @@ const Personel = () => {
             <Col xs={4}>
               <ThemeProvider theme={theme}>
                 <Row>
-                  <Col xs={8} sm={6} className="mb-1">
+                  <Col xs={8} sm={6} className="mb-1 mt-1">
                     <Button variant="contained">Ekle</Button>
                   </Col>
-                  <Col xs={8} sm={6} className="mt-1">
+                  <Col xs={8} sm={6} className="mb-1 mt-1">
                     <Button
                       onClick={() => setAddNewPersonel(!addNewPersonel)}
                       variant="contained"
@@ -185,6 +198,17 @@ const Personel = () => {
       </div>
       <div>
         <StripedDataGrid
+          sx={{
+            ".MuiDataGrid-cell": {
+              border: "1px solid #000",
+            },
+            ".MuiDataGrid-columnHeader": {
+              border: "1px solid #000",
+            },
+            ".MuiDataGrid-main": {
+              border: "1px solid #000",
+            },
+          }}
           rows={rows}
           columns={columns}
           getRowClassName={(params) =>

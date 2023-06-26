@@ -10,7 +10,6 @@ const GeneralSlice = createSlice({
   initialState,
   reducers: {
     changeState: (state, action) => {
-      console.log("state changed");
       const { type, sidebarShow } = action.payload;
       switch (type) {
         case "set":

@@ -1,7 +1,8 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { changeState } from "src/features/user/GeneralSlice";
+import { logoutUser } from "src/features/user/UserSlice";
 import {
   CContainer,
   CHeader,
@@ -12,7 +13,7 @@ import {
   CNavItem,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { cilBell, cilList, cilMenu } from "@coreui/icons";
+import { cilBell, cilList, cilMenu, cilAccountLogout } from "@coreui/icons";
 
 import { AppBreadcrumb } from "./index";
 import { AppHeaderDropdown } from "./header/index";
@@ -20,6 +21,7 @@ import { ReactComponent as Logo } from "src/assets/brand/instalogogold.svg";
 
 const AppHeader = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const sidebarShow = useSelector((state) => state.general.sidebarShow);
 
   return (
@@ -37,6 +39,13 @@ const AppHeader = () => {
         <AppBreadcrumb />
         <CHeaderNav className="ms-3">
           <AppHeaderDropdown />
+          <CIcon
+            icon={cilAccountLogout}
+            className="me-2"
+            onClick={() => {
+              dispatch(logoutUser());
+            }}
+          />
         </CHeaderNav>
       </CContainer>
     </CHeader>

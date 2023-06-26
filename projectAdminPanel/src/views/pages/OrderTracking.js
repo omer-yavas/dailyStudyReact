@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 //grid için
 import { alpha, styled } from "@mui/material/styles";
 import { DataGrid, gridClasses, GridToolbar } from "@mui/x-data-grid";
@@ -10,6 +11,7 @@ import {
   GridToolbarFilterButton,
 } from "@mui/x-data-grid";
 import Grid from "@mui/material/Grid";
+import { Button as BootstrapButton } from "react-bootstrap";
 import Button from "@mui/material/Button";
 import Input from "@mui/material/Input";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -32,7 +34,7 @@ const theme = createTheme({
 
 const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
   [`& .${gridClasses.row}.even`]: {
-    backgroundColor: alpha(theme.palette.success.main, 0.3),
+    backgroundColor: alpha("#796a51", 0.3),
     "&:hover, &.Mui-hovered": {
       backgroundColor: alpha(theme.palette.primary.main, ODD_OPACITY),
       "@media (hover: none)": {
@@ -90,17 +92,55 @@ function CustomToolbar() {
 }
 
 const OrderTracking = () => {
+  const navigate = useNavigate();
+
   const columns = [
-    { field: "orderID", headerName: "Sipariş No", minWidth: 40 },
-    { field: "tableID", headerName: "Masa No", minWidth: 70 },
-    { field: "customerID", headerName: "Müşteri", minWidth: 160 },
-    { field: "orderTime", headerName: "Sipariş Zamanı", minWidth: 120 },
-    { field: "orderIngredients", headerName: "İçerik", minWidth: 250 },
-    { field: "orderStatus", headerName: "Servis Durumu", minWidth: 110 },
-    { field: "orderPrice", headerName: "Tutar", minWidth: 70 },
+    {
+      field: "orderID",
+      headerName: "Sipariş",
+      headerClassName: "column-header-style",
+      minWidth: 40,
+    },
+    {
+      field: "tableID",
+      headerName: "Masa No",
+      headerClassName: "column-header-style",
+      minWidth: 70,
+    },
+    {
+      field: "customerID",
+      headerName: "Müşteri",
+      headerClassName: "column-header-style",
+      minWidth: 160,
+    },
+    {
+      field: "orderTime",
+      headerName: "Zamanı",
+      headerClassName: "column-header-style",
+      minWidth: 120,
+    },
+    {
+      field: "orderIngredients",
+      headerName: "İçerik",
+      headerClassName: "column-header-style",
+      minWidth: 250,
+    },
+    {
+      field: "orderStatus",
+      headerName: "Durumu",
+      headerClassName: "column-header-style",
+      minWidth: 110,
+    },
+    {
+      field: "orderPrice",
+      headerName: "Tutar",
+      headerClassName: "column-header-style",
+      minWidth: 70,
+    },
     {
       field: "cancel",
       headerName: "İptal Et",
+      headerClassName: "column-header-style",
       minWidth: 80,
       renderCell: (params) => {
         return (
@@ -115,6 +155,7 @@ const OrderTracking = () => {
     {
       field: "edit",
       headerName: "Düzenle",
+      headerClassName: "column-header-style",
       minWidth: 80,
       renderCell: (params) => {
         return (
@@ -182,8 +223,25 @@ const OrderTracking = () => {
   ];
   return (
     <div>
+      <div className="add_newOrder_button">
+        <BootstrapButton onClick={() => navigate("/addNewOrder")}>
+          Yeni Sipariş Gir!
+        </BootstrapButton>
+      </div>
+
       <div>
         <StripedDataGrid
+          sx={{
+            ".MuiDataGrid-cell": {
+              border: "1px solid #000",
+            },
+            ".MuiDataGrid-columnHeader": {
+              border: "1px solid #000",
+            },
+            ".MuiDataGrid-main": {
+              border: "1px solid #000",
+            },
+          }}
           rows={rows}
           columns={columns}
           getRowClassName={(params) =>

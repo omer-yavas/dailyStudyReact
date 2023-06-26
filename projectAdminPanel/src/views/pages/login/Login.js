@@ -36,7 +36,7 @@ const Login = () => {
 
   useEffect(() => {
     if (authenticated === true) {
-      navigate("/menu");
+      navigate("/");
     } else {
       console.log("not authenticated yet!");
     }
@@ -59,7 +59,7 @@ const Login = () => {
                     </div>
 
                     <p className="text-medium-emphasis">
-                      user : k , password: k
+                      Hesabınıza Giriş Yapın!
                     </p>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>

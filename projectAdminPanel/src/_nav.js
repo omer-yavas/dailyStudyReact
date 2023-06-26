@@ -7,9 +7,11 @@ import {
   cilPeople,
   cilPuzzle,
   cilCarAlt,
+  cilHome,
   cilSpeedometer,
   cilSpreadsheet,
   cilStar,
+  cilSettings,
   cilNotes,
   cilRestaurant,
   cilUserPlus,
@@ -18,6 +20,12 @@ import {
 import { CNavGroup, CNavItem, CNavTitle } from "@coreui/react";
 
 const _nav = [
+  {
+    component: CNavItem,
+    name: "Ana Sayfa",
+    to: "/homePage",
+    icon: <CIcon icon={cilHome} customClassName="nav-icon" />,
+  },
   {
     component: CNavItem,
     name: "Sipariş Takip",
@@ -67,17 +75,37 @@ const _nav = [
     to: "/reports",
     icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
   },
-  {
-    component: CNavItem,
-    name: "Restoran Masa Düzeni",
-    to: "/restaurantLayout",
-    icon: <CIcon icon={cilViewQuilt} customClassName="nav-icon" />,
-  },
+
   {
     component: CNavItem,
     name: "Personel",
     to: "/personel",
     icon: <CIcon icon={cilPeople} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavGroup,
+    name: "Ayarlar",
+    to: "/base",
+    icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: "Restoran Masa Düzeni",
+        to: "/restaurantLayout",
+        // icon: <CIcon icon={cilViewQuilt} customClassName="nav-icon" />,
+      },
+
+      {
+        component: CNavItem,
+        name: "Anket Soruları",
+        to: "/menu",
+      },
+      {
+        component: CNavItem,
+        name: "Kredi Hesap Yönetimi",
+        to: "/menu",
+      },
+    ],
   },
 ];
 

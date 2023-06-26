@@ -1,0 +1,20 @@
+.childSpinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@media (max-width: 576px) {
+  .spinnerContainer {
+    min-width: 350px;
+    min-height: 550%;
+    position: relative;
+  }
+}
+@media (max-width: 768px) {
+  .spinnerContainer {
+    min-width: 500px;
+    min-height: 750%;
+    position: relative;
+  }
+}

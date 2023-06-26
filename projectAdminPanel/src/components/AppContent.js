@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { CContainer, CSpinner } from "@coreui/react";
-
+import HomePage from "src/views/pages/HomePage";
 // routes config
 import routes from "../routes";
 
@@ -23,7 +23,7 @@ const AppContent = () => {
               )
             );
           })}
-          <Route path="/" element={<p></p>} />
+          <Route path="/" element={<HomePage />} />
           {/* <Route path="/" element={<Navigate to="dashboard" replace />} /> */}
         </Routes>
       </Suspense>

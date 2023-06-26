@@ -1,0 +1,40 @@
+.add_newOrder_button {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.new_order_target {
+  display: flex;
+}
+
+.new_order_currentCustomers {
+  width: 300px;
+  height: 200px;
+  background-color: azure;
+}
+
+.new_order_options {
+  display: flex;
+  gap: 2rem;
+}
+
+.options_itemCategories {
+  display: flex;
+  flex-direction: column;
+}
+
+.options_items {
+  display: flex;
+  flex-direction: column;
+}
+
+.options_menuCategories {
+  display: flex;
+  flex-direction: column;
+}
+
+.options_menu {
+  display: flex;
+  flex-direction: column;
+}
