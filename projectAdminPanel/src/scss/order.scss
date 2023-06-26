@@ -6,12 +6,18 @@
 
 .new_order_target {
   display: flex;
+  gap: 2rem;
 }
 
 .new_order_currentCustomers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
   width: 300px;
   height: 200px;
   background-color: azure;
+  border-radius: 10px;
 }
 
 .new_order_options {
@@ -37,4 +43,13 @@
 .options_menu {
   display: flex;
   flex-direction: column;
+}
+
+.orderContext {
+  background-color: aliceblue;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  min-width: 280px;
+  padding: 10px;
 }

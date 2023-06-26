@@ -169,10 +169,12 @@ const AddNewOrder = () => {
             </Form.Select>
           </Form.Group>
           <div className="new_order_currentCustomers">
-            Masadaki Mevcut Müşteriler
+            <p style={{ "text-decoration": "underline" }}>
+              Masadaki Mevcut Müşteriler
+            </p>
+            <div></div>
+            <BootstrapButton>Yeni Müşteri Oluştur</BootstrapButton>
           </div>
-          <BootstrapButton>Yeni Müşteri Oluştur Butonu</BootstrapButton>
-          <div>Yeni müşteri Giriş ekranı</div>
         </div>
         <div className="new_order_options">
           <div className="options_itemCategories">
@@ -186,7 +188,7 @@ const AddNewOrder = () => {
             })}
           </div>
           <div className="options_items">
-            <p>Yitecek-İçecek</p>
+            <p>Yiyecek-İçecek</p>
             {filteredItems.map((item) => {
               return <MuiButton onClick={() => {}}>{item.name}</MuiButton>;
             })}
@@ -210,7 +212,9 @@ const AddNewOrder = () => {
         </div>
       </div>
 
-      <div>Seçim Tablosu</div>
+      <div className="orderContext">
+        <p>Sipariş İçeriği</p>
+      </div>
     </div>
   );
 };
