@@ -8,17 +8,31 @@ import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 import CheckIcon from "@mui/icons-material/Check";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import TableLayout from "./TableLayout";
-
+import Swal from "sweetalert2";
+import { useFetchReceiptsQuery } from "src/features/ReceiptApi";
 import {
   useFetchDataQuery,
   usePostDataMutation,
   useDeleteDataMutation,
   useEditDataMutation,
+  useFetchTablesQuery,
 } from "src/features/RestaurantLayoutApi";
 
 const RestaurantLayout = () => {
   //Redux Toolkit Queries ile ilgili state ler
-  const { data, isLoading, isError } = useFetchDataQuery();
+  const {
+    data,
+    refetch: sectionRefetch,
+    isLoading,
+    isError,
+  } = useFetchDataQuery();
+
+  const {
+    data: tablesData,
+    isLoading: tablesLoading,
+    isError: tablesError,
+  } = useFetchTablesQuery();
+
   const [
     postData,
     {
@@ -28,6 +42,10 @@ const RestaurantLayout = () => {
       isError: postingError,
     },
   ] = usePostDataMutation();
+
+  //--------------Adisyonları çekmek için
+  const { data: receiptsData } = useFetchReceiptsQuery();
+
   const [deleteData] = useDeleteDataMutation();
   const [editData] = useEditDataMutation();
   //UI ile ilgili bölümlerin state lari
@@ -38,6 +56,7 @@ const RestaurantLayout = () => {
   const [editModeId, setEditModeId] = useState("");
   const [editedName, setEditedName] = useState("");
   const [editedTotal, setEditedTotal] = useState("");
+  //
 
   //Redux Toolkit query durumları
   if (isLoading) {
@@ -54,12 +73,60 @@ const RestaurantLayout = () => {
     setAddNewSectionForm(false);
   };
 
-  //Buraya server a gidecek veriler işlenecek
+  //--- verilen sayı ve isimde server a table yazdıran fonksiyon
+  async function tableGenerator(name, id, count) {
+    let n = 1;
+
+    while (n <= count) {
+      await fetch("http://194.62.40.78/api/admin/Table/Create", {
+        method: "POST",
+        body: JSON.stringify({
+          tableName: `${name}-${n}`,
+          sectionId: id,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((response) => {
+        if (response.ok) {
+          n++;
+        } else {
+          console.log(response);
+          throw new Error("Masa Yüklenemedi");
+        }
+      });
+    }
+    sectionRefetch();
+  }
+
+  //----section ekleyen fonksiyon
   async function addNewSectionHandler() {
-    postData({
-      sectionName: sectionName,
-      tableCount: tableTotal,
-    });
+    await fetch("http://194.62.40.78/api/admin/Section/Create", {
+      method: "POST",
+      body: JSON.stringify({
+        sectionName: sectionName,
+        tableCount: tableTotal,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          console.log(response);
+          throw new Error("Bölüm Yüklenemedi");
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        tableGenerator(
+          data.data.sectionName,
+          data.data.id,
+          data.data.tableCount
+        );
+      });
 
     closeAndResetInputs();
   }
@@ -80,11 +147,35 @@ const RestaurantLayout = () => {
   // }, [postingSectionData]);
 
   const deleteSectionHandler = (id) => {
-    deleteData([id]);
+    //o section daki table ları çıkart
+    const relatedTables = tablesData.data.filter(
+      (table) => table.sectionId === id
+    );
+    // o section da açık adisyon var mı kontrol et
+    receiptsData.data.map((receipt) => {
+      if (relatedTables.includes(receipt.tableId)) {
+        return Swal.fire({
+          icon: "error",
+          title: "Dikkat!",
+          text: "Bölüm masalarında açık adisyon var!",
+        });
+      }
+      console.log("map içi");
+    });
+    console.log("map dışı");
+    //yoksa o sectiondaki table id leri topla
+
+    // section daki tüm table ları sil
+
+    //section u sil
+    //deleteData([id]);
   };
 
   //Edit modundaki section card a ait function ler
   const editSectionHandler = (id) => {
+    //daha fazla masa isteniyorsa fazka kısım masa kadar ekleme yap
+
+    // daha az masa isteniyorsa fazlalık kısım kadar sil
     editData({
       id: id,
       sectionName: editedName,
@@ -103,10 +194,10 @@ const RestaurantLayout = () => {
     <>
       <Container className="mt-4">
         <Row className="justify-content-center">
-          {data.data.map((item) => {
+          {data.data.map((item, index) => {
             if (editModeId == item.id) {
               return (
-                <Col xs={6} sm={4} md={3} className="mb-3">
+                <Col xs={6} sm={4} md={3} className="mb-3" key={index}>
                   <div className="sectionbox">
                     <Form.Group className="mb-1" controlId="formBasicText">
                       <Form.Control

@@ -380,7 +380,6 @@ const ItemCategories = () => {
                 <p style={{ margin: 0, padding: 0 }}>Kategori İsmi</p>
 
                 <input
-                  placeholder={params.row.categoryName}
                   value={editedCategoryName}
                   onChange={(e) => handleChangeOnCategoryName(e)}
                 ></input>

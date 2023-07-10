@@ -20,6 +20,10 @@
   border-radius: 10px;
 }
 
+.selectedCustomer {
+  color: red;
+}
+
 .new_order_options {
   display: flex;
   gap: 2rem;
@@ -52,4 +56,13 @@
   flex-direction: column;
   min-width: 280px;
   padding: 10px;
+}
+
+.orderContext_element {
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderContext_element_icons {
+  display: flex;
 }

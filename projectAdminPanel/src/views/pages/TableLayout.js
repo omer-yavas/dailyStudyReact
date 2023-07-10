@@ -1,7 +1,10 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useFetchDataQuery } from "src/features/RestaurantLayoutApi";
+import {
+  useFetchDataQuery,
+  useFetchTablesQuery,
+} from "src/features/RestaurantLayoutApi";
 
 function mySvg(id, index) {
   return (
@@ -39,6 +42,14 @@ function mySvg(id, index) {
 const TableLayout = () => {
   //Redux Toolkit Queries ile ilgili state ler
   const { data, isLoading, isError } = useFetchDataQuery();
+  const {
+    data: tablesData,
+    isLoading: tablesLoading,
+    isError: tablesError,
+  } = useFetchTablesQuery();
+
+  //table lar yüklenene kadar boş array kullanmak için
+  const currentTables = tablesData ? tablesData : [];
 
   //Redux Toolkit query durumları
   if (isLoading) {
